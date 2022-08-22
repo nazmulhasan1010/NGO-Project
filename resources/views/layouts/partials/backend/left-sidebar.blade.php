@@ -90,7 +90,7 @@
                 </a>
             </li>
             <li>
-                <a href="index.html" class="ai-icon" aria-expanded="false">
+                <a href="{{route('event.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-calendar-minus"></i>
                     <span class="nav-text">Upcoming Events</span>
                 </a>
@@ -114,19 +114,19 @@
                 </a>
                 <ul aria-expanded="false">
                     <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('publication.index')}}" class="ai-icon" aria-expanded="false">
                             <i class="fa-solid fa-book"></i>
                             <span class="nav-text">Publications</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('report.index')}}" class="ai-icon" aria-expanded="false">
                             <i class="fa-solid fa-flag"></i>
                             <span class="nav-text">Report</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('news.index')}}" class="ai-icon" aria-expanded="false">
                             <i class="fa-solid fa-radio"></i>
                             <span class="nav-text">News</span>
                         </a>
@@ -139,7 +139,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('product.index')}}" class="ai-icon" aria-expanded="false">
                             <i class="fa-brands fa-product-hunt"></i>
                             <span class="nav-text">Products</span>
                         </a>

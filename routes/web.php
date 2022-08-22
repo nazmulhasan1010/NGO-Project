@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\Backend\aboutController;
 use App\Http\Controllers\Backend\developmentComponentController;
+use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\imageGalleryController;
+use App\Http\Controllers\Backend\newsController;
+use App\Http\Controllers\Backend\productController;
+use App\Http\Controllers\Backend\publicationController;
+use App\Http\Controllers\Backend\reportController;
 use App\Http\Controllers\Backend\sliderController;
 use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
@@ -31,5 +36,9 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function (){
     Route::resource('slider',sliderController::class);
     Route::resource('imageGallery',imageGalleryController::class);
     Route::resource('videoGallery',videoGalleryController::class);
-
+    Route::resource('product',productController::class);
+    Route::resource('report',reportController::class);
+    Route::resource('publication',publicationController::class);
+    Route::resource('news',newsController::class);
+    Route::resource('event',eventController::class);
 });

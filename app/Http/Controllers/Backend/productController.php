@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\VideoGallery;
+use App\Models\Product;
 use Brian2694\Toastr\Facades\Toastr;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class videoGalleryController extends Controller
+class productController extends Controller
 {
     public function __construct()
     {
@@ -24,8 +24,8 @@ class videoGalleryController extends Controller
     public function index()
     {
         try {
-            $videos = VideoGallery::latest()->get();
-            return view('backend.gallery.videoGallery', compact('videos'));
+            $products = Product::latest()->get();
+            return view('backend.aboutCrab.products', compact('products'));
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -53,24 +53,20 @@ class videoGalleryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'videoTitle' => 'required',
-            'videoLink' => 'required|regex:??',
+            'productTitle' => 'required',
+            'productImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
 
         try {
-            if (preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $request->videoLink)) {
-                $videoGallery = new VideoGallery();
-                $videoGallery->title = $request->videoTitle;
-                $videoGallery->link = $request->videoLink;
-                $videoGallery->save();
+            $fileName = imageUploadWithCustomSize($request->productImage, "1200", "800", "product");
+            $product = new Product();
+            $product->title = $request->productTitle;
+            $product->description = $request->productDescription;
+            $product->image = 'product/' . $fileName;
+            $product->save();
 
-                Toastr::success('Video Successfully Added');
-                return redirect()->back();
-            } else {
-                Toastr::error('Please enter a valid link');
-                return redirect()->back();
-            }
-
+            Toastr::success('Product Successfully Added');
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -81,10 +77,10 @@ class videoGalleryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Category $category
+     * @param \App\Models\Product $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Product $category)
     {
         //
     }
@@ -92,14 +88,14 @@ class videoGalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Category $category
+     * @param \App\Models\Product $category
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
         try {
-            $videoGallery = VideoGallery::findOrFail($id);
-            return response()->json(['row_data' => $videoGallery], 200);
+            $product = Product::findOrFail($id);
+            return response()->json(['row_data' => $product], 200);
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -110,7 +106,7 @@ class videoGalleryController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Category $category
+     * @param \App\Models\Product $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cat)
@@ -119,28 +115,25 @@ class videoGalleryController extends Controller
             'old_id' => 'required',
         ]);
 
-
         try {
-            if ($request->videoEditLink != '') {
-                $link = $request->videoEditLink;
+            if ($request->old_image === 'change') {
+                $fileName = 'product/' . imageUploadWithCustomSize($request->editProductImage, "1200", "800", "product");
+                Storage::delete('public/' . Product::findOrFail($request->old_id)->image);
             } else {
-                $link = $request->old_video;
-            }
-            if (preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $link)) {
-                $videoGallery = VideoGallery::findOrFail($request->old_id);
-                $videoGallery->title = $request->editVideoTitle;
-                $videoGallery->link = $link;
-                $videoGallery->status = $request->row_status;
-                $videoGallery->update();
-
-                Toastr::success('Video Successfully Update');
-                return redirect()->back();
-
-            } else {
-                Toastr::error('Please enter a valid link');
-                return redirect()->back();
+                $fileName = $request->old_image;
             }
 
+            $product = Product::findOrFail($request->old_id);
+
+            $product->title = $request->editProductTitle;
+            $product->description = $request->editProductDescription;
+            $product->image = $fileName;
+            $product->status = $request->row_status;
+            $product->update();
+
+
+            Toastr::success('Product Successfully Update');
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -150,14 +143,15 @@ class videoGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Category $category
+     * @param \App\Models\Product $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         try {
-            VideoGallery::Find($id)->delete();
-            Toastr::success('Video Successfully Deleted');
+            Storage::delete('public/' . Product::findOrFail($id)->image);
+            Product::Find($id)->delete();
+            Toastr::success('Product Successfully Deleted');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());

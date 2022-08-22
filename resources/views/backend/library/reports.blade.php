@@ -15,13 +15,13 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, Welcome back!</h4>
-                        <span>Video Gallery</span>
+                        <span>Reports</span>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Video Gallery</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Reports</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Video Gallery</h4>
+                            <h4 class="card-title">Reports</h4>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                     data-target="#addNewModal">Add New
                             </button>
@@ -42,20 +42,22 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Video</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($videos as $key=>$item)
+                                    @foreach ($report as $key=>$item)
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td class="previewIframe" id="previewIframe">
-                                                @php
-                                                    echo $item->link;
-                                                @endphp
+                                            <td>{{ $item->description }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                     width="100px"
+                                                     height="60px">
                                             </td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
@@ -76,7 +78,7 @@
                                                            style="color: #fff;font-size: 14px; "></i>
                                                     </a>
                                                     <form id="delete-form-{{$item->id}}"
-                                                          action="{{ route('videoGallery.destroy',$item->id) }}"
+                                                          action="{{ route('report.destroy',$item->id) }}"
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -98,10 +100,10 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('videoGallery.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('report.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add New Video </h5>
+                                    <h5 class="modal-title">Add New Report</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -109,25 +111,40 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="videoTitle">Title<span class="req">*</span>
+                                                <label for="reportTitle">Report Title<span class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="videoTitle"
-                                                       name="videoTitle" placeholder="Title">
+                                                <input type="text" class="form-control" id="reportTitle"
+                                                       name="reportTitle" placeholder="Report Title">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="preview-img">
-                                            <img src="{{asset('assets/backend/images/avatar/film.png')}}"
-                                                 class="imagePreView imagePreViewSelect imagePreViewEmpty" alt="">
-
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="videoLink">Paste youtube link</label>
-                                                <input type="text" class="form-control" id="videoLink" name="videoLink" placeholder="Paste here">
+                                                <label for="reportDescription">Report Description<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <textarea class="form-control" id="reportDescription"
+                                                          name="reportDescription" placeholder="Report Description">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="{{asset('assets/backend/images/avatar/upload.png')}}"
+                                                 class="imagePreView imagePreViewSelect imagePreViewEmpty">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="choseEditImage">
+                                                    <label for="uploadImage" class="editImageUp btn">Chose a
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="uploadImage"
+                                                           name="reportImage" hidden>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -146,12 +163,11 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('videoGallery.update','1')}}" method="POST"
-                                  enctype="multipart/form-data">
+                            <form action="{{ route('report.update','1')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Video Gallery</h5>
+                                    <h5 class="modal-title">Edit Report</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -160,16 +176,28 @@
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <input type="text" id="row_id" name="old_id" hidden>
-                                                <label for="editVideoTitle">Title <span
+                                                <label for="editReportTitle">Report Title <span
                                                         class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="editVideoTitle"
-                                                       name="editVideoTitle"
+                                                <input type="text" class="form-control" id="editReportTitle"
+                                                       name="editReportTitle"
                                                        value="{{old('title', empty($errors->title) ? '' : $errors->title)}}"
-                                                       placeholder="Video Title">
+                                                       placeholder="Report Title">
                                                 @if ($errors->has('title'))
                                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="editReportDescription">Report Description<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <textarea class="form-control" id="editReportDescription"
+                                                          name="editReportDescription" placeholder="Report Description">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -191,17 +219,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="preview-img videoEditPreview">
 
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="" id="imagePreView"
+                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <input type="hidden" class="form-control" id="old_video" name="old_video">
-                                                <label for="editVideoLink">Paste a new youtube link</label>
-                                                <input type="text" class="form-control" id="editVideoLink" name="videoEditLink" placeholder="Paste here">
+                                                <div class="choseEditImage">
+                                                    <button type="button" class="edit-image" id="restoreImage">Restore
+                                                    </button>
+                                                    <label for="editImage" class="editImageUp btn">Chose a new
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="editImage"
+                                                           name="editReportImage"
+                                                           hidden>
+                                                    <input type="hidden" id="old_image" name="old_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -245,16 +282,18 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('admin/videoGallery') }}/" + row_id + "/edit",
+                url: "{{ url('admin/report') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
                     var r_val = response.row_data;
                     console.log(r_val);
                     $('#row_id').val(r_val.id);
-                    $('#editVideoTitle').val(r_val.title);
-                    $('#old_video').val(r_val.link);
+                    $('#editReportTitle').val(r_val.title);
+                    $('#editReportDescription').val(r_val.description);
                     $('#row_status').val(r_val.status);
-                    $('.videoEditPreview').html(r_val.link);
+                    $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
+                    $('#restoreImage').attr('data-id', r_val.image);
+                    $('#old_image').val(r_val.image);
                 },
                 error: function (response) {
                     alert("Error")
@@ -262,6 +301,5 @@
             });
             e.preventDefault();
         });
-        $('#previewIframe iframe').css({'height': '120px', 'width': '200px'});
     </script>
 @endpush

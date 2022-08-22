@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\VideoGallery;
+use App\Models\News;
 use Brian2694\Toastr\Facades\Toastr;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class videoGalleryController extends Controller
+class newsController extends Controller
 {
     public function __construct()
     {
@@ -23,10 +24,11 @@ class videoGalleryController extends Controller
      */
     public function index()
     {
-        try {
-            $videos = VideoGallery::latest()->get();
-            return view('backend.gallery.videoGallery', compact('videos'));
-        } catch (\Exception $e) {
+        try{
+            $news = News::latest()->get();
+            return view('backend.library.news',compact('news'));
+        }
+        catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
         }
@@ -47,30 +49,26 @@ class videoGalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'videoTitle' => 'required',
-            'videoLink' => 'required|regex:??',
+            'newsTitle' => 'required',
+            'newsImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
 
         try {
-            if (preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $request->videoLink)) {
-                $videoGallery = new VideoGallery();
-                $videoGallery->title = $request->videoTitle;
-                $videoGallery->link = $request->videoLink;
-                $videoGallery->save();
+            $fileName = imageUploadWithCustomSize($request->newsImage, "1200", "800", "news");
+            $news = new News();
+            $news->title = $request->newsTitle;
+            $news->description = $request->newsDescription;
+            $news->image = 'news/' . $fileName;
+            $news->save();
 
-                Toastr::success('Video Successfully Added');
-                return redirect()->back();
-            } else {
-                Toastr::error('Please enter a valid link');
-                return redirect()->back();
-            }
-
+            Toastr::success('News Successfully Added');
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -81,7 +79,7 @@ class videoGalleryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Category $category
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -92,14 +90,14 @@ class videoGalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Category $category
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
         try {
-            $videoGallery = VideoGallery::findOrFail($id);
-            return response()->json(['row_data' => $videoGallery], 200);
+            $news = News::findOrFail($id);
+            return response()->json(['row_data' => $news], 200);
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -109,8 +107,8 @@ class videoGalleryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Category $category
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cat)
@@ -119,28 +117,25 @@ class videoGalleryController extends Controller
             'old_id' => 'required',
         ]);
 
-
         try {
-            if ($request->videoEditLink != '') {
-                $link = $request->videoEditLink;
+            if ($request->old_image === 'change') {
+                $fileName = 'news/' . imageUploadWithCustomSize($request->editNewsImage, "1200", "800", "news");
+                Storage::delete('public/' . News::findOrFail($request->old_id)->image);
             } else {
-                $link = $request->old_video;
-            }
-            if (preg_match('/(youtube.com|youtu.be)\/(embed)?(\?v=)?(\S+)?/', $link)) {
-                $videoGallery = VideoGallery::findOrFail($request->old_id);
-                $videoGallery->title = $request->editVideoTitle;
-                $videoGallery->link = $link;
-                $videoGallery->status = $request->row_status;
-                $videoGallery->update();
-
-                Toastr::success('Video Successfully Update');
-                return redirect()->back();
-
-            } else {
-                Toastr::error('Please enter a valid link');
-                return redirect()->back();
+                $fileName = $request->old_image;
             }
 
+            $news = News::findOrFail($request->old_id);
+
+            $news->title = $request->editNewsTitle;
+            $news->description = $request->editNewsDescription;
+            $news->image = $fileName;
+            $news->status = $request->row_status;
+            $news->update();
+
+
+            Toastr::success('News Successfully Update');
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -150,14 +145,15 @@ class videoGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Category $category
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         try {
-            VideoGallery::Find($id)->delete();
-            Toastr::success('Video Successfully Deleted');
+            Storage::delete('public/' . News::findOrFail($id)->image);
+            News::Find($id)->delete();
+            Toastr::success('News Successfully Deleted');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());

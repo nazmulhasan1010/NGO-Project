@@ -20,6 +20,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!--    font awesome -->
     <script src="https://kit.fontawesome.com/2e7d7272e8.js" crossorigin="anonymous"></script>
+
+    {{--    datepicker--}}
+    <link rel="stylesheet" href="{{asset('assets/backend/css/jquery-ui.css')}}" type="text/css"/>
     <!-- laravel-toastr css -->
     <link href="{{ asset('assets/backend/css/toastr.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- sweetalert2 css -->
@@ -150,6 +153,7 @@
 {{-- <script src="{{ asset('assets/backend/js/dashboard/dashboard-1.js')}}"></script> --}}
 
 {{-- <script src="{{ asset('assets/backend/vendor/chart.js/Chart.bundle.min.js')}}"></script> --}}
+<script src="{{ asset('assets/backend/js/jquery-ui.js')}}"></script>
 <script src="{{ asset('assets/backend/js/custom.min.js')}}"></script>
 <script src="{{ asset('assets/backend/js/deznav-init.js')}}"></script>
 <script src="{{ asset('assets/backend/js/demo.js')}}"></script>
