@@ -144,6 +144,8 @@
         @yield('content')
     </main>
 </div> --}}
+{{--ckeditor--}}
+<script src="{{asset('assets/plugin/ckeditor/ckeditor.js')}}"></script>
 <!-- Required vendors -->
 <script src="{{ asset('assets/backend/vendor/global/global.min.js')}}"></script>
 <script src="{{ asset('assets/backend/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>

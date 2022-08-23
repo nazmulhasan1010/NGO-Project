@@ -7,7 +7,7 @@
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Main Menu</li>
 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="has-arrow ai-icon"  aria-expanded="false">
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="nav-text">About</span>
                 </a>
@@ -52,7 +52,7 @@
                 </ul>
             </li>
 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-images"></i>
                     <span class="nav-text">Gallery</span>
                 </a>
@@ -84,7 +84,7 @@
                 </a>
             </li>
             <li>
-                <a href="index.html" class="ai-icon" aria-expanded="false">
+                <a href="{{route('activity.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="nav-text">Project Activities</span>
                 </a>
@@ -97,18 +97,18 @@
             </li>
 
             <li>
-                <a href="index.html" class="ai-icon" aria-expanded="false">
+                <a href="{{route('notice.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-clipboard"></i>
                     <span class="nav-text">Notice & Job Circular</span>
                 </a>
             </li>
             <li>
-                <a href="index.html" class="ai-icon" aria-expanded="false">
+                <a href="{{route('beneficiaryLocations.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-map-location"></i>
                     <span class="nav-text">Enterprise Location</span>
                 </a>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="has-arrow ai-icon"  aria-expanded="false">
                     <i class="fa-solid fa-book-bookmark"></i>
                     <span class="nav-text">Library</span>
                 </a>
@@ -133,7 +133,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="has-arrow ai-icon"  aria-expanded="false">
                     <i class="fa-solid fa-address-card"></i>
                     <span class="nav-text">About Crab</span>
                 </a>
@@ -154,7 +154,7 @@
             </li>
 
             <li class="nav-label">Web Site</li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="has-arrow ai-icon"  aria-expanded="false">
                     <i class="flaticon-077-menu-1"></i>
                     <span class="nav-text">Web Site</span>
                 </a>

@@ -141,10 +141,11 @@
                                         <input type="text" id="row_id" name="old_id" hidden>
                                         <label for="edit_category_name">Overview <span class="req">*</span>
                                         </label>
-                                        <input type="text" class="form-control" id="edit_category_name"
-                                               name="category_name"
-                                               value="{{old('project_overview', empty($errors->project_overview) ? '' : $errors->project_overview)}}"
-                                               placeholder="Overview">
+                                        <textarea type="text" class="form-control" id="edit_category_name"
+                                                  name="category_name"
+                                                  value="{{old('project_overview', empty($errors->project_overview) ? '' : $errors->project_overview)}}"
+                                                  placeholder="Overview">
+                                        </textarea>
                                         @if ($errors->has('project_overview'))
                                             <span class="text-danger">{{ $errors->first('project_overview') }}</span>
                                         @endif
@@ -212,7 +213,6 @@
                 url: "{{ url('admin/about') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
-                    console.log(response.row_data.id);
 
                     $('#row_id').val(response.row_data.id);
                     $('#edit_category_name').val(response.row_data.project_overview);
@@ -224,5 +224,6 @@
             });
             e.preventDefault();
         });
+
     </script>
 @endpush

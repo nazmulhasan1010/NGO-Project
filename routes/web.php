@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Backend\aboutController;
+use App\Http\Controllers\Backend\activityController;
+use App\Http\Controllers\Backend\beneficiaryLocationsController;
 use App\Http\Controllers\Backend\developmentComponentController;
 use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\imageGalleryController;
 use App\Http\Controllers\Backend\newsController;
+use App\Http\Controllers\Backend\noticeController;
 use App\Http\Controllers\Backend\productController;
 use App\Http\Controllers\Backend\publicationController;
 use App\Http\Controllers\Backend\reportController;
@@ -41,4 +44,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'],function (){
     Route::resource('publication',publicationController::class);
     Route::resource('news',newsController::class);
     Route::resource('event',eventController::class);
+    Route::resource('beneficiaryLocations',beneficiaryLocationsController::class);
+    Route::resource('activity',activityController::class);
+    Route::resource('notice',noticeController::class);
 });

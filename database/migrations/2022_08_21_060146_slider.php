@@ -17,7 +17,7 @@ class Slider extends Migration
             $table->id();
             $table->string('title',255)->nullable();
             $table->string('image',255)->nullable();
-            $table->string('description',255)->nullable();
+            $table->string('description',5000)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class DevelopmentComponent extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->id();
             $table->string('title',255)->nullable();
-            $table->string('description',255)->nullable();
+            $table->string('description',5000)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
