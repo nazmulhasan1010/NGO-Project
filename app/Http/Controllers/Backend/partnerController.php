@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Workingarea;
+use App\Models\Partner;
 use Brian2694\Toastr\Facades\Toastr;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class workingAreaController extends Controller
+class partnerController extends Controller
 {
     public function __construct()
     {
@@ -20,13 +19,13 @@ class workingAreaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $areas = Workingarea::latest()->get();
-            return view('backend.about.workingArea', compact('areas'));
+            $partners = Partner::latest()->get();
+            return view('backend.partner.partner', compact('partners'));
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -51,21 +50,20 @@ class workingAreaController extends Controller
      */
     public function store(Request $request)
     {
-//       return $request->all();
         $this->validate($request, [
-            'areaTitle' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'companyName' => 'required',
+            'companyLogo' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
 
         try {
-            $fileName = imageUploadWithCustomSize($request->image, "1200", "800", "workingArea");
-            $workingArea = new Workingarea();
-            $workingArea->area = $request->areaTitle;
-            $workingArea->description = $request->description;
-            $workingArea->image = 'workingArea/' . $fileName;
-            $workingArea->save();
+            $fileName = imageUploadWithCustomSize($request->companyLogo, "1200", "800", "partners");
 
-            Toastr::success('Working Area Successfully Added');
+            $partner = new Partner();
+            $partner->companyName = $request->companyName;
+            $partner->companyLogo = 'partners/' . $fileName;
+            $partner->save();
+
+            Toastr::success('Successfully Added');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -77,10 +75,10 @@ class workingAreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\Partner $partner
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategory $subcategory)
+    public function show(Partner $partner)
     {
         //
     }
@@ -88,14 +86,14 @@ class workingAreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\Partner $partner
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
         try {
-            $about = Workingarea::findOrFail($id);
-            return response()->json(['row_data' => $about], 200);
+            $partners = Partner::findOrFail($id);
+            return response()->json(['row_data' => $partners], 200);
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -106,33 +104,31 @@ class workingAreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\Partner $partner
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cat)
     {
         $this->validate($request, [
             'old_id' => 'required',
-//            'editImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
         // return $request->all();
 
         try {
             if ($request->old_image === 'change') {
-                $fileName = 'workingArea/' . imageUploadWithCustomSize($request->editImage, "1200", "800", "workingArea");
-                Storage::delete('public/' . Workingarea::findOrFail($request->old_id)->image);
+                $fileName = 'partners/' . imageUploadWithCustomSize($request->editCompanyLogo, "1200", "800", "partners");
+                Storage::delete('public/' . Partner::findOrFail($request->old_id)->companyLogo);
             } else {
                 $fileName = $request->old_image;
             }
-            $workingArea = Workingarea::findOrFail($request->old_id);
+            $partners = Partner::findOrFail($request->old_id);
 
-            $workingArea->area = $request->editAreaTitle;
-            $workingArea->description = $request->description;
-            $workingArea->image = $fileName;
-            $workingArea->status = $request->row_status;
-            $workingArea->update();
+            $partners->companyName = $request->companyNameEdit;
+            $partners->companyLogo = $fileName;
+            $partners->status = $request->row_status;
+            $partners->update();
 
-            Toastr::success('Working Area Updated Successfully');
+            Toastr::success('Successfully Update');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -143,16 +139,15 @@ class workingAreaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\Partner $partner
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         try {
-
-            Storage::delete('public/' . Workingarea::findOrFail($id)->image);
-            Workingarea::findOrFail($id)->delete();
-            Toastr::success('Working area Successfully Deleted');
+            Storage::delete('public/' . Partner::findOrFail($id)->companyLogo);
+            Partner::Find($id)->delete();
+            Toastr::success('Successfully Deleted');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());

@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','Working Area')
+@section('title','Links')
 
 @push('vendor-css')
     <!-- Datatable -->
@@ -15,13 +15,13 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, Welcome back!</h4>
-                        <span>Working Area</span>
+                        <span>Links</span>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Working Area</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Links</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Working Area</h4>
+                            <h4 class="card-title">Links</h4>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                     data-target="#addNewModal">Add New
                             </button>
@@ -41,24 +41,22 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Area</th>
-                                        <th>Description</th>
-                                        <th>Image</th>
+                                        <th>Facebook Links</th>
+                                        <th>Youtube Links</th>
+                                        <th>Twitter Links </th>
+                                        <th>LinkedIn Links </th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($areas as $key=>$item)
+                                    @foreach ($links as $key=>$item)
                                         <tr>
                                             <td>{{ $key+1}}</td>
-                                            <td>{{ $item->area }}</td>
-                                            <td>{{ $item->description }}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/' . $item->image) }}"
-                                                     width="100px"
-                                                     height="60px" alt="">
-                                            </td>
+                                            <td>{{ $item->facebookLinks }}</td>
+                                            <td>{{ $item->youtubeLinks }}</td>
+                                            <td>{{ $item->twitterLinks }}</td>
+                                            <td>{{ $item->linkedInLinks }}</td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
                                             </td>
@@ -78,7 +76,7 @@
                                                            style="color: #fff;font-size: 14px; "></i>
                                                     </a>
                                                     <form id="delete-form-{{$item->id}}"
-                                                          action="{{ route('workingArea.destroy',$item->id) }}"
+                                                          action="{{ route('links.destroy',$item->id) }}"
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -100,11 +98,10 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('workingArea.store')}}" method="POST" enctype="multipart/form-data">
-
+                            <form action="{{ route('links.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add New Working Area</h5>
+                                    <h5 class="modal-title">Add New Links</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -112,36 +109,48 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="areaTitle">Working Area</label>
-                                                <input type="text" class="form-control" placeholder="Area"
-                                                       name="areaTitle"
-                                                       id="areaTitle">
+                                                <label for="facebookLink">Facebook Links<span class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="facebookLink"
+                                                       name="facebookLink" placeholder="Paste url here">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="youtubeLink">Youtube Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="youtubeLink"
+                                                       name="youtubeLink" placeholder="Paste url here">
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <input type="hidden" value="project_overview" name="hint">
-                                                <label for="description">Description <span class="req">*</span> </label>
-                                                <textarea class="form-control" id="description" name="description"
-                                                          placeholder="Description">
-                                                </textarea>
+                                                <label for="twitterLinks">Twitter Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="twitterLinks"
+                                                       name="twitterLinks" placeholder="Paste url here">
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="preview-img">
-                                            <img src="{{asset('assets/backend/images/avatar/upload.png')}}"
-                                                 class="imagePreView imagePreViewSelect imagePreViewEmpty">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="choseEditImage">
-                                            <label for="uploadImage" class="editImageUp btn">Chose a
-                                                image </label>
-                                            <input type="file" class="form-control" id="uploadImage" name="image"
-                                                   hidden>
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="linkedInLink">LinkedIn Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="linkedInLink"
+                                                       name="linkedInLink" placeholder="Paste url here">
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -159,42 +168,65 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('workingArea.update','1')}}" method="POST"
-                                  enctype="multipart/form-data">
+                            <form action="{{ route('links.update','1')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Working Area</h5>
+                                    <h5 class="modal-title">Edit Linkss</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
+
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="editAreaTitle">Working Area</label>
-                                                <input type="text" class="form-control" placeholder="Area"
-                                                       name="editAreaTitle"
-                                                       id="editAreaTitle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <input type="text" id="row_id" name="old_id" hidden>
-                                                <label for="areaDescription">Description <span class="req">*</span>
+                                                <input type="hidden" id="row_id" name="old_id">
+                                                <label for="facebookLinkEdit">Facebook Links<span class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="areaDescription"
-                                                       name="description"
-                                                       value="{{old('description', empty($errors->description) ? '' : $errors->description)}}"
-                                                       placeholder="Description">
-                                                @if ($errors->has('description'))
-                                                    <span class="text-danger">{{ $errors->first('description') }}</span>
-                                                @endif
+                                                <input type="text" class="form-control" id="facebookLinkEdit"
+                                                       name="facebookLinkEdit" placeholder="Paste url here">
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="youtubeLinkEdit">Youtube Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="youtubeLinkEdit"
+                                                       name="youtubeLinkEdit" placeholder="Paste url here">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="twitterLinksEdit">Twitter Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="twitterLinksEdit"
+                                                       name="twitterLinksEdit" placeholder="Paste url here">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="linkedInLinkEdit">LinkedIn Links<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="linkedInLinkEdit"
+                                                       name="linkedInLinkEdit" placeholder="Paste url here">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
@@ -213,29 +245,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="preview-img">
-                                            <img src="" id="imagePreView"
-                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="choseEditImage">
-                                                    <button type="button" class="edit-image" id="restoreImage">Restore
-                                                    </button>
-                                                    <label for="editImage" class="editImageUp btn">Chose a new
-                                                        image </label>
-                                                    <input type="file" class="form-control" id="editImage"
-                                                           name="editImage"
-                                                           hidden>
-                                                    <input type="hidden" id="old_image" name="old_image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
@@ -276,17 +285,16 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('admin/workingArea') }}/" + row_id + "/edit",
+                url: "{{ url('admin/links') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
                     var r_val = response.row_data;
                     $('#row_id').val(r_val.id);
-                    $('#editAreaTitle').val(r_val.area);
-                    $('#areaDescription').val(r_val.description);
+                    $('#linkedInLinkEdit').val(r_val.linkedInLinks);
+                    $('#twitterLinksEdit').val(r_val.twitterLinks);
+                    $('#youtubeLinkEdit').val(r_val.youtubeLinks);
+                    $('#facebookLinkEdit').val(r_val.facebookLinks);
                     $('#row_status').val(r_val.status);
-                    $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
-                    $('#restoreImage').attr('data-id', r_val.image);
-                    $('#old_image').val(r_val.image);
                 },
                 error: function (response) {
                     alert("Error")
@@ -294,5 +302,6 @@
             });
             e.preventDefault();
         });
+
     </script>
 @endpush

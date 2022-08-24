@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Workingarea;
+use App\Models\SuccessStories;
 use Brian2694\Toastr\Facades\Toastr;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class workingAreaController extends Controller
+class successStoriesController extends Controller
 {
     public function __construct()
     {
@@ -20,17 +19,19 @@ class workingAreaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $areas = Workingarea::latest()->get();
-            return view('backend.about.workingArea', compact('areas'));
+            $successStories = SuccessStories::latest()->get();
+            return view('backend.successStories.successStories', compact('successStories'));
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
         }
+
+
     }
 
     /**
@@ -51,21 +52,21 @@ class workingAreaController extends Controller
      */
     public function store(Request $request)
     {
-//       return $request->all();
         $this->validate($request, [
-            'areaTitle' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'successStoriesDescription' => 'required',
+            'successStoriesImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'successStoriesTitle' => 'required',
         ]);
 
         try {
-            $fileName = imageUploadWithCustomSize($request->image, "1200", "800", "workingArea");
-            $workingArea = new Workingarea();
-            $workingArea->area = $request->areaTitle;
-            $workingArea->description = $request->description;
-            $workingArea->image = 'workingArea/' . $fileName;
-            $workingArea->save();
+            $fileName = imageUploadWithCustomSize($request->successStoriesImage, "1200", "800", "successStories");
+            $successStories = new SuccessStories();
+            $successStories->title = $request->successStoriesTitle;
+            $successStories->image = 'successStories/' . $fileName;
+            $successStories->description = $request->successStoriesDescription;
+            $successStories->save();
 
-            Toastr::success('Working Area Successfully Added');
+            Toastr::success('A Success Stories Added');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -77,10 +78,10 @@ class workingAreaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\SuccessStories $successStories
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategory $subcategory)
+    public function show(SuccessStories $successStories)
     {
         //
     }
@@ -88,14 +89,14 @@ class workingAreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\SuccessStories $successStories
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
         try {
-            $about = Workingarea::findOrFail($id);
-            return response()->json(['row_data' => $about], 200);
+            $successStories = SuccessStories::findOrFail($id);
+            return response()->json(['row_data' => $successStories], 200);
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -106,33 +107,32 @@ class workingAreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\SuccessStories $successStories
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $cat)
     {
         $this->validate($request, [
             'old_id' => 'required',
-//            'editImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
-        // return $request->all();
+
 
         try {
             if ($request->old_image === 'change') {
-                $fileName = 'workingArea/' . imageUploadWithCustomSize($request->editImage, "1200", "800", "workingArea");
-                Storage::delete('public/' . Workingarea::findOrFail($request->old_id)->image);
+                $fileName = 'successStories/' . imageUploadWithCustomSize($request->editSuccessStoriesImage, "1200", "800", "successStories");
+                Storage::delete('public/' . SuccessStories::findOrFail($request->old_id)->image);
             } else {
                 $fileName = $request->old_image;
             }
-            $workingArea = Workingarea::findOrFail($request->old_id);
+            $foods = SuccessStories::findOrFail($request->old_id);
 
-            $workingArea->area = $request->editAreaTitle;
-            $workingArea->description = $request->description;
-            $workingArea->image = $fileName;
-            $workingArea->status = $request->row_status;
-            $workingArea->update();
+            $foods->title = $request->editSuccessStoriesTitle;
+            $foods->image = $fileName;
+            $foods->description = $request->editSuccessStoriesDescription;
+            $foods->status = $request->row_status;
+            $foods->update();
 
-            Toastr::success('Working Area Updated Successfully');
+            Toastr::success('Story Successfully Update');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -143,16 +143,15 @@ class workingAreaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\SubCategory $subcategory
+     * @param \App\Models\SuccessStories $successStories
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         try {
-
-            Storage::delete('public/' . Workingarea::findOrFail($id)->image);
-            Workingarea::findOrFail($id)->delete();
-            Toastr::success('Working area Successfully Deleted');
+            Storage::delete('public/' . SuccessStories::findOrFail($id)->image);
+            SuccessStories::Find($id)->delete();
+            Toastr::success('Story Successfully Deleted');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
