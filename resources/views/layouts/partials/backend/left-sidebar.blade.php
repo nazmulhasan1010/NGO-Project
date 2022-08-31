@@ -7,20 +7,22 @@
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Main Menu</li>
 
-            <li><a class="has-arrow ai-icon"  aria-expanded="false">
+            <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-circle-info"></i>
                     <span class="nav-text">About</span>
                 </a>
                 <ul aria-expanded="false">
                     <li>
-                        <a href="{{route('about.index','inst=overview.project_overview')}}" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('about.index','inst=overview.project_overview')}}" class="ai-icon"
+                           aria-expanded="false">
 
                             <i class="fa-solid fa-eye"></i>
                             <span class="nav-text">Project Overview</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('about.index','inst=goal.project_goal')}}" class="ai-icon" aria-expanded="false">
+                        <a href="{{route('about.index','inst=goal.project_goal')}}" class="ai-icon"
+                           aria-expanded="false">
                             <i class="fa-brands fa-golang"></i>
                             <span class="nav-text">Project Goal</span>
                         </a>
@@ -114,7 +116,7 @@
                     <span class="nav-text">Enterprise Location</span>
                 </a>
             </li>
-            <li><a class="has-arrow ai-icon"  aria-expanded="false">
+            <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-book-bookmark"></i>
                     <span class="nav-text">Library</span>
                 </a>
@@ -139,7 +141,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon"  aria-expanded="false">
+            <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-burger"></i>
                     <span class="nav-text">About Food</span>
                 </a>
@@ -177,7 +179,7 @@
                 </ul>
             </li>
 
-            <li><a class="has-arrow ai-icon"  aria-expanded="false">
+            <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-tower-cell"></i>
                     <span class="nav-text">Communication</span>
                 </a>
@@ -198,46 +200,11 @@
             </li>
 
             <li class="nav-label">Web Site</li>
-            <li><a class="has-arrow ai-icon"  aria-expanded="false">
-                    <i class="flaticon-077-menu-1"></i>
+            <li><a class="has-arrow ai-icon">
                     <span class="nav-text">Web Site</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Overview</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Awards</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Our Brands</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Events</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">News</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
-
     </div>
 </div>
 <!--**********************************

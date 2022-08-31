@@ -33,7 +33,7 @@ class SubCategoryController extends Controller
             return redirect()->back();
         }
 
-       
+
     }
 
     /**
@@ -58,13 +58,13 @@ class SubCategoryController extends Controller
             'category_id'       => 'required',
             'sub_category_name' => 'required',
         ]);
-        
+
         try{
             $subcategory    = new SubCategory();
             $subcategory->category_id = $request->category_id;
             $subcategory->sub_category_name = $request->sub_category_name;
             $subcategory->save();
-    
+
             Toastr::success('SubCategory Successfully Added');
             return redirect()->back();
         }
@@ -94,8 +94,8 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-       
-        
+
+
         try{
             $subcategory = SubCategory::findOrFail($id);
             return response()->json(['row_data' => $subcategory],200);
@@ -105,7 +105,7 @@ class SubCategoryController extends Controller
             return redirect()->back();
         }
 
-        
+
     }
 
     /**
@@ -117,14 +117,14 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $cat)
     {
-        
+
 
         $this->validate($request,[
             'category_id'       => 'required',
             'sub_category_name' => 'required',
         ]);
 
-        
+
         try{
             $subcategory = SubCategory::findOrFail($request->old_id);
 
@@ -132,7 +132,7 @@ class SubCategoryController extends Controller
             $subcategory->sub_category_name = $request->sub_category_name;
             $subcategory->row_status        = $request->row_status;
             $subcategory->update();
-    
+
             Toastr::success('Sub Category Successfully Update');
             return redirect()->back();
         }

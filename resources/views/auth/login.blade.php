@@ -3,10 +3,10 @@
 @section('title','Login')
 
 @push('vendor-css')
-    
+
 @endpush
 @push('onpage-css')
-    
+
 @endpush
 @section('content')
 
@@ -43,15 +43,13 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        
+
                                     </div>
                                     <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                         <div class="form-group">
                                            <div class="custom-control custom-checkbox ml-1">
                                                 <input type="checkbox" class="custom-control-input" id="basic_checkbox_1" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="custom-control-label" for="basic_checkbox_1">Remember my preference</label>
-
-                                                
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -80,8 +78,8 @@
 
 @endsection
 @push('vendor-js')
-    
+
 @endpush
 @push('onpage-js')
-    
+
 @endpush

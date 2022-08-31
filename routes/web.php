@@ -23,10 +23,16 @@ use App\Http\Controllers\Backend\successStoriesController;
 use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\frontend\frontHomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\UsersController;
 
+//frontend
+Route::get('/', [frontHomeController::class, 'index']);
 
+
+//Backend
 Route::get('/login', function () {
     return view('auth/login');
 });
@@ -38,29 +44,29 @@ Auth::routes();
 
 // Backend Controllers
 
-Route::group(['prefix'=>'admin','middleware' => 'auth'],function (){
-    Route::get('dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
-    Route::resource('users',UsersController::class);
-    Route::resource('about',aboutController::class);
-    Route::resource('workingArea',workingAreaController::class);
-    Route::resource('component',developmentComponentController::class);
-    Route::resource('slider',sliderController::class);
-    Route::resource('imageGallery',imageGalleryController::class);
-    Route::resource('videoGallery',videoGalleryController::class);
-    Route::resource('product',productController::class);
-    Route::resource('report',reportController::class);
-    Route::resource('publication',publicationController::class);
-    Route::resource('news',newsController::class);
-    Route::resource('event',eventController::class);
-    Route::resource('beneficiaryLocations',beneficiaryLocationsController::class);
-    Route::resource('activity',activityController::class);
-    Route::resource('notice',noticeController::class);
-    Route::resource('foodValue',foodValueController::class);
-    Route::resource('foodDemand',foodDemandController::class);
-    Route::resource('recipe',recipeController::class);
-    Route::resource('foods',foodsController::class);
-    Route::resource('successStories',successStoriesController::class);
-    Route::resource('contact',contactController::class);
-    Route::resource('links',linksController::class);
-    Route::resource('partner',partnerController::class);
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::resource('users', UsersController::class);
+    Route::resource('about', aboutController::class);
+    Route::resource('workingArea', workingAreaController::class);
+    Route::resource('component', developmentComponentController::class);
+    Route::resource('slider', sliderController::class);
+    Route::resource('imageGallery', imageGalleryController::class);
+    Route::resource('videoGallery', videoGalleryController::class);
+    Route::resource('product', productController::class);
+    Route::resource('report', reportController::class);
+    Route::resource('publication', publicationController::class);
+    Route::resource('news', newsController::class);
+    Route::resource('event', eventController::class);
+    Route::resource('beneficiaryLocations', beneficiaryLocationsController::class);
+    Route::resource('activity', activityController::class);
+    Route::resource('notice', noticeController::class);
+    Route::resource('foodValue', foodValueController::class);
+    Route::resource('foodDemand', foodDemandController::class);
+    Route::resource('recipe', recipeController::class);
+    Route::resource('foods', foodsController::class);
+    Route::resource('successStories', successStoriesController::class);
+    Route::resource('contact', contactController::class);
+    Route::resource('links', linksController::class);
+    Route::resource('partner', partnerController::class);
 });
