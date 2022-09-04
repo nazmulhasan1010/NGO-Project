@@ -43,7 +43,6 @@
                                         <th>#</th>
                                         <th>Title</th>
                                         <th>Image</th>
-                                        <th>Description</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -58,7 +57,6 @@
                                                      width="100px"
                                                      height="60px">
                                             </td>
-                                            <td>{{ $item->description }}</td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
                                             </td>

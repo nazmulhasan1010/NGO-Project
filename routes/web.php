@@ -24,12 +24,27 @@ use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\frontend\frontHomeController;
+use App\Http\Controllers\frontend\pageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\UsersController;
 
 //frontend
 Route::get('/', [frontHomeController::class, 'index']);
+Route::get('faq',[pageController::class,'faq']);
+Route::get('gallery/photos',[pageController::class,'photos']);
+Route::get('gallery/videos',[pageController::class,'videos']);
+Route::get('overview',[pageController::class,'overview']);
+Route::get('goal',[pageController::class,'goal']);
+Route::get('mission',[pageController::class,'mission']);
+Route::get('workingarea',[pageController::class,'workingarea']);
+Route::get('entrepreneurs',[pageController::class,'entrepreneurs']);
+Route::get('success',[pageController::class,'success']);
+Route::get('calender',[pageController::class,'calender']);
+Route::get('events',[pageController::class,'events']);
+Route::get('news',[pageController::class,'news']);
+Route::get('topics',[pageController::class,'topics']);
+Route::get('notice',[pageController::class,'notice']);
 
 
 //Backend
