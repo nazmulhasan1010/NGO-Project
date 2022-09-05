@@ -116,6 +116,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="companyWebsite">Company Website<span class="req"></span>
+                                                </label>
+                                                <input type="text" class="form-control" id="companyWebsite" name="companyWebsite" placeholder="http://example.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="preview-img">
                                             <img src="{{asset('assets/backend/images/avatar/upload.png')}}" class="imagePreView imagePreViewSelect imagePreViewEmpty">
                                         </div>
@@ -167,6 +176,15 @@
                                                 @if ($errors->has('title'))
                                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="editCompanyWebsite">Company Website<span class="req"></span>
+                                                </label>
+                                                <input type="text" class="form-control" id="editCompanyWebsite" name="editCompanyWebsite" placeholder="http://example.com">
                                             </div>
                                         </div>
                                     </div>
@@ -258,6 +276,7 @@
                     $('#row_id').val(r_val.id);
                     $('#companyNameEdit').val(r_val.companyName);
                     $('#row_status').val(r_val.status);
+                    $('#editCompanyWebsite').val(r_val.website);
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.companyLogo);
                     $('#restoreImage').attr('data-id', r_val.companyLogo);
                     $('#old_image').val(r_val.companyLogo);

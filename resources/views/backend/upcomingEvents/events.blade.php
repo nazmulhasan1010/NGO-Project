@@ -42,7 +42,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Description</th>
                                         <th>Image</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
@@ -53,7 +52,6 @@
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td>{{ $item->description }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/' . $item->image) }}"
                                                      width="100px"
@@ -146,6 +144,16 @@
                                                     <input type="text" class="form-control eventDate" id="eventEnd"
                                                            name="eventEnd" placeholder="Event End">
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="eventPlace">Place<span class="req"></span>
+                                                </label>
+                                                <input type="text" class="form-control" id="eventPlace"
+                                                       name="eventPlace" placeholder="Eg: Mohammadpur Dhaka">
                                             </div>
                                         </div>
                                     </div>
@@ -245,7 +253,8 @@
                                                 <div class="col-md-6">
                                                     <label for="eventStart">Event Start<span class="req">*</span>
                                                     </label>
-                                                    <input type="text" class="form-control eventDate" id="editEventStart"
+                                                    <input type="text" class="form-control eventDate"
+                                                           id="editEventStart"
                                                            name="editEventStart" placeholder="Event Start">
                                                 </div>
 
@@ -258,7 +267,16 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="editEventPlace">Place<span class="req"></span>
+                                                </label>
+                                                <input type="text" class="form-control" id="editEventPlace"
+                                                       name="editEventPlace" placeholder="Eg: Mohammadpur Dhaka">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="preview-img">
                                             <img src="" id="imagePreView"
@@ -332,6 +350,7 @@
                     $('#row_status').val(r_val.status);
                     $('#editEventStart').val(r_val.start);
                     $('#editEventEnd').val(r_val.end);
+                    $('#editEventPlace').val(r_val.place);
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
                     $('#restoreImage').attr('data-id', r_val.image);
                     $('#old_image').val(r_val.image);

@@ -53,7 +53,7 @@ class imageGalleryController extends Controller
     {
         $this->validate($request, [
             'imgTitle' => 'required',
-            'albumImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'albumImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:5048',
         ]);
 
         try {

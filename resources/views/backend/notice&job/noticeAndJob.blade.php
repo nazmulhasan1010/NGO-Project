@@ -43,7 +43,6 @@
                                         <th>#</th>
                                         <th>Date</th>
                                         <th>Title</th>
-                                        <th>Description</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -54,7 +53,6 @@
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->dateAt }}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td>{{$item->description}}</td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
                                             </td>

@@ -42,7 +42,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Area</th>
-                                        <th>Description</th>
                                         <th>Image</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
@@ -53,7 +52,6 @@
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->area }}</td>
-                                            <td>{{ $item->description }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/' . $item->image) }}"
                                                      width="100px"

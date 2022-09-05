@@ -56,7 +56,7 @@ class eventController extends Controller
     {
         $this->validate($request, [
             'eventTitle' => 'required',
-            'eventImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'eventImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:5048',
         ]);
 
         try {
@@ -66,6 +66,7 @@ class eventController extends Controller
             $event->description = $request->eventDescription;
             $event->start = $request->eventStart;
             $event->end = $request->eventEnd;
+            $event->place = $request->eventPlace;
             $event->image = 'event/' . $fileName;
             $event->save();
 
@@ -134,6 +135,7 @@ class eventController extends Controller
             $event->status = $request->row_status;
             $event->start = $request->editEventStart;
             $event->end = $request->editEventEnd;
+            $event->place = $request->editEventPlace;
             $event->image = $fileName;
             $event->update();
 

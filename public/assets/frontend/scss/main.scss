@@ -144,7 +144,7 @@ a {
             color: $textColor-70;
         }
 
-        ul {
+        ul, ol {
             list-style: decimal;
             font-size: 1.2rem;
             @include poppins(400);
@@ -165,6 +165,7 @@ a {
         }
 
         ul,
+        ol,
         p,
         li {
             list-style: decimal;

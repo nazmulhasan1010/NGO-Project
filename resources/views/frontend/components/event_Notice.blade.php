@@ -1,122 +1,95 @@
 <!-- event & notice -->
 <div class="project_summary bg-white-cu content-100">
     <div class="row content-80 event-notices">
-        <div class="col-md-6 sub-container event-notice">
-            <div class="heading">
-                <span class="heading-1">Umcoming</span>
-                <span class="heading-2">Events</span>
-            </div>
-            <div class="row event">
-                <div class="col-md-4 events">
-                    <img src="image/events-1.jpg" alt="">
+        @if($event)
+
+            <div class="col-md-6 sub-container event-notice">
+                <div class="heading">
+                    <span class="heading-1">Umcoming</span>
+                    <span class="heading-2">Events</span>
                 </div>
-                <div class="col-md-8 events">
-                    <h4>Fundraiser for kids</h4>
-                    <div class="event-date-place">
-                        <span>29 Aug 20 - 20 Sep 22</span>
-                        <span>Mohammadpur Dhaka</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nesciunt?</p>
-                    <a href="#"><button type="button" class="more-button">Learn more</button></a>
-                </div>
-            </div>
-            <div class="row event">
-                <div class="col-md-4 events">
-                    <img src="image/events-2.jpg" alt="">
-                </div>
-                <div class="col-md-8 events">
-                    <h4>Fundraiser for kids</h4>
-                    <div class="event-date-place">
-                        <span>29 Aug 20 - 20 Sep 22</span>
-                        <span>Mohammadpur Dhaka</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nesciunt?</p>
-                    <a href="#"><button type="button" class="more-button">Learn more</button></a>
-                </div>
-            </div>
-            <div class="row event">
-                <div class="col-md-4 events">
-                    <img src="image/events-3.jpg" alt="">
-                </div>
-                <div class="col-md-8 events">
-                    <h4>Fundraiser for kids</h4>
-                    <div class="event-date-place">
-                        <span>29 Aug 20 - 20 Sep 22</span>
-                        <span>Mohammadpur Dhaka</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nesciunt?</p>
-                    <a href="#"><button type="button" class="more-button">Learn more</button></a>
-                </div>
-            </div>
-            <a href="#" class="more-link"><button type="button" class="more-button see-all">See All <i
-                        class="fa-solid fa-angles-right"></i></button></a>
-        </div>
-        <div class="col-md-6 sub-container event-notice ">
-            <div class="heading">
-                <span class="heading-1">Notice</span>
-            </div>
-            <div class="row notice">
-                <div class="col-md-2 notices">
-                    <div class="date">
-                        13 Sep 2022
-                    </div>
-                </div>
-                <a href="#" class="col-md-10 notices">
-                    <h3>Lorem ipsum, dolor sit amet consectetur.</h3>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur animi dolores
-                        laudantium, repudiandae
-                        quam.
-                    </p>
+                @foreach($event as $events)
+                    @if($events->status==1)
+
+                        <div class="row event">
+                            <div class="col-md-4 events">
+                                <img src="{{asset('storage/' .$events->image)}}" alt="">
+                            </div>
+                            <div class="col-md-8 events">
+                                @php
+                                    if (strlen($events->title)>35){
+                                       $title = substr($events->title,0,34);
+                                    }else{
+                                        $title = $events->title ;
+                                    }
+                                @endphp
+                                <h4>{{$title}}</h4>
+                                <div class="event-date-place">
+
+                                    <span>{{date("d", strtotime($events->start)).' '.substr(date("F", strtotime($events->start)),0,3).' '.date("Y", strtotime($events->start)) .' - ' .date("d", strtotime($events->end)).' '.substr(date("F", strtotime($events->end)),0,3).' ' .date("Y", strtotime($events->end))}}</span>
+                                    <span>{{$events->place}}</span>
+                                </div>
+                                @php
+                                    if (strlen($events->description)>80){
+                                       $des = substr($events->description,0,80).'...';
+                                    }else{
+                                        $des = $events->description ;
+                                    }
+                                @endphp
+                                <p>{{$des}}</p>
+                                <a href="#">
+                                    <button type="button" class="more-button">Learn more</button>
+                                </a>
+                            </div>
+                        </div>
+
+                    @endif
+                @endforeach
+                <a href="#" class="more-link">
+                    <button type="button" class="more-button see-all">See All <i
+                            class="fa-solid fa-angles-right"></i></button>
                 </a>
             </div>
-            <div class="row notice">
-                <div class="col-md-2 notices">
-                    <div class="date">
-                        13 Sep 2022
-                    </div>
+        @endif
+        @if($notice)
+            <div class="col-md-6 sub-container event-notice ">
+                <div class="heading">
+                    <span class="heading-1">Notice</span>
                 </div>
-                <a href="#" class="col-md-10 notices">
-                    <h3>Lorem ipsum, dolor sit amet consectetur.</h3>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur animi dolores
-                        laudantium, repudiandae
-                        quam.
-                    </p>
+                @foreach($notice as $notices)
+                    @if($notices->status==1)
+                        <div class="row notice">
+                            <div class="col-md-2 notices">
+                                <div class="date">
+                                    {{date('d',strtotime($notices->dateAt)).' '.substr(date('F',strtotime($notices->dateAt)),0,3).' '.date('Y',strtotime($notices->dateAt))}}
+                                </div>
+                            </div>
+                            <a href="#" class="col-md-10 notices">
+                                @php
+                                    if (strlen($notices->title)>40){
+                                       $title = substr($notices->title,0,39).'...';
+                                    }else{
+                                        $title = $notices->title ;
+                                    }
+                                @endphp
+                                <h3>{{$title}}</h3>
+                                @php
+                                    if (strlen($notices->description)>300){
+                                       $des = substr($notices->description,0,299).'...';
+                                    }else{
+                                        $des = $notices->description ;
+                                    }
+                                @endphp
+                                <p>{{$des}}</p>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+                <a href="#" class="more-link">
+                    <button type="button" class="more-button see-all">See All <i
+                            class="fa-solid fa-angles-right"></i></button>
                 </a>
             </div>
-            <div class="row notice">
-                <div class="col-md-2 notices">
-                    <div class="date">
-                        13 Sep 2022
-                    </div>
-                </div>
-                <a href="#" class="col-md-10 notices">
-                    <h3>Lorem ipsum, dolor sit amet consectetur.</h3>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur animi dolores
-                        laudantium, repudiandae
-                        quam.
-                    </p>
-                </a>
-            </div>
-            <div class="row notice">
-                <div class="col-md-2 notices">
-                    <div class="date">
-                        13 Sep 2022
-                    </div>
-                </div>
-                <a href="#" class="col-md-10 notices">
-                    <h3>Lorem ipsum, dolor sit amet consectetur.</h3>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur animi dolores
-                        laudantium, repudiandae
-                        quam.
-                    </p>
-                </a>
-            </div>
-            <a href="#" class="more-link"><button type="button" class="more-button see-all">See All <i
-                        class="fa-solid fa-angles-right"></i></button></a>
-        </div>
+        @endif
     </div>
 </div> <!-- event & notice end -->

@@ -61,6 +61,7 @@ class partnerController extends Controller
             $partner = new Partner();
             $partner->companyName = $request->companyName;
             $partner->companyLogo = 'partners/' . $fileName;
+            $partner->website = $request->companyWebsite;
             $partner->save();
 
             Toastr::success('Successfully Added');
@@ -126,6 +127,7 @@ class partnerController extends Controller
             $partners->companyName = $request->companyNameEdit;
             $partners->companyLogo = $fileName;
             $partners->status = $request->row_status;
+            $partners->website = $request->editCompanyWebsite;
             $partners->update();
 
             Toastr::success('Successfully Update');

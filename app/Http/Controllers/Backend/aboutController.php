@@ -62,21 +62,27 @@ class aboutController extends Controller
         $this->validate($request, [
             'overview' => 'required',
         ]);
-
-        try {
-            $instructions = explode('.', $request->hint);
-            $ins = $instructions[0];
-            $addAbout = new About();
-            $addAbout->$ins = $request->overview;
-            $addAbout->save();
-
-            Toastr::success($instructions[1] . ' ' . 'Successfully Added');
+        $instructions = explode('.', $request->hint);
+        $ins = $instructions[0];
+        $checkExists = About::select($ins)->get();
+//        return $checkExists;
+        $row = count(json_decode($checkExists, true));
+        if ($row > 0 && $checkExists[0]->$ins !== null) {
+            Toastr::warning($instructions[1] . ' ' . 'Already exists so please delete the older' . ' ' . $instructions[1] . ' ' . 'And try again');
             return redirect()->back();
-        } catch (\Exception $e) {
-            Toastr::warning($e->getMessage());
-            return redirect()->back();
+        } else {
+            try {
+                $addAbout = new About();
+                $addAbout->$ins = $request->overview;
+                $addAbout->save();
+
+                Toastr::success($instructions[1] . ' ' . 'Successfully Added');
+                return redirect()->back();
+            } catch (\Exception $e) {
+                Toastr::warning($e->getMessage());
+                return redirect()->back();
+            }
         }
-
     }
 
     /**
