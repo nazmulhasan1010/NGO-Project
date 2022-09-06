@@ -65,9 +65,21 @@ class aboutController extends Controller
         $instructions = explode('.', $request->hint);
         $ins = $instructions[0];
         $checkExists = About::select($ins)->get();
-//        return $checkExists;
+        // return $checkExists;
         $row = count(json_decode($checkExists, true));
-        if ($row > 0 && $checkExists[0]->$ins !== null) {
+//        return $row;
+        if ($row > 0) {
+            for ($i = 0; $i < $row; $i++) {
+                if ($checkExists[$i]->$ins !== null) {
+                    $sta = 'exist';
+                    break;
+                } else {
+                    $sta = 'ok';
+                }
+            }
+        }
+//        return $sta;
+        if ($sta === 'exist') {
             Toastr::warning($instructions[1] . ' ' . 'Already exists so please delete the older' . ' ' . $instructions[1] . ' ' . 'And try again');
             return redirect()->back();
         } else {

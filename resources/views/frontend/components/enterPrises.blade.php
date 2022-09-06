@@ -24,7 +24,7 @@
                             <h2>{{$title}}</h2>
                             <p class="contact-num">{{$enterprise->contact}}</p>
                             <p>{{$enterprise->address}}</p>
-                            <a href="#">
+                            <a href="{{url('entrepreneurs')}}">
                                 <button type="button" class="more-button">View Map</button>
                             </a>
                         </div>
@@ -33,7 +33,7 @@
             @endforeach
 
         </div>
-        <a href="#">
+        <a href="{{url('entrepreneurs')}}">
             <button type="button" class="more-button see-all">See All <i
                     class="fa-solid fa-angles-right"></i></button>
         </a>

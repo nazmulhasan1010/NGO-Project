@@ -260,7 +260,16 @@
   .gallery .photos .col-md-4 img,
   .gallery .photos .col-md-3 img {
     width: 100%;
-    height: 70px; } }
+    height: 70px; }
+
+  .active-gallery .phptos {
+    height: auto; }
+    .active-gallery .phptos .col-md-4 img,
+    .active-gallery .phptos .col-md-3 img {
+      width: 100%;
+      height: 80px; }
+    .active-gallery .phptos .col-md-3 {
+      width: 20.1%; } }
 /* ------------------------------542px-------------------------- */
 /* ------------------------------475px-------------------------- */
 @media screen and (max-width: 475px) {
@@ -284,6 +293,15 @@
       .gallery .videos .row iframe {
         width: 100%;
         height: 150px; }
+
+  .active-gallery .phptos {
+    height: auto; }
+    .active-gallery .phptos .col-md-4 img,
+    .active-gallery .phptos .col-md-3 img {
+      width: 100%;
+      height: 60px; }
+    .active-gallery .phptos .col-md-3 {
+      width: 20.1%; }
 
   .contact_modal .left {
     width: 75%; }

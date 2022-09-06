@@ -1,308 +1,178 @@
 @extends('layouts.frontend')
 @section('title','Photos')
 @section('content')
-    <!-- page title -->
+    @php
+        $image = getImage();
+        $row = count(json_decode($image, true));
+        $year22='';
+        for ($i = 0; $i < $row; $i++){
+            if (date("Y", strtotime($image[$i]->updated_at))==2022){
+                $year22=true;
+                break;
+            }
+        }
+        $year23='';
+         for ($i = 0; $i < $row; $i++){
+            if (date("Y", strtotime($image[$i]->updated_at))==2023){
+                $year23=true;
+                break;
+            }
+        }
+         $year24='';
+         for ($i = 0; $i < $row; $i++){
+            if (date("Y", strtotime($image[$i]->updated_at))==2024){
+                $year24=true;
+                break;
+            }
+        }
+         $year25='';
+         for ($i = 0; $i < $row; $i++){
+            if (date("Y", strtotime($image[$i]->updated_at))==2025){
+                $year25=true;
+                break;
+            }
+        }
+    @endphp
+        <!-- page title -->
     <div class="row bg-dark-cu page-title">
         <div class="col-md-12 page-titles">
             <a href="{{url('/')}}">home</a>
             <a href="{{url('faq')}}">photos</a>
         </div>
     </div> <!-- page title end -->
-    <!-- photos -->
-    <div class="project_summary bg-dark-cu content-100 shadow-light">
-        <div class="heading">
-            <span class="heading-1">Photo</span>
-            <span class="heading-2">Gallery</span>
-        </div>
-        <div class="row content-80 ">
-            <div class="col-md-12 sub-container gallery gallery-coll">
-                <div class="heading coll-heading">
-                    <div class="left">
-                        <span class="heading-1">2022</span>
-                        <span class="heading-2">Gallery</span>
-                        <div class="counter">
-                            <span class="total-photos">30</span><span>Photos</span>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <i class="fa-solid fa-circle-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="row phptos ">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-1.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-3.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-5.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-6.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-7.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-10.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-9.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-7.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-10.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-9.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
+    @if($image)
+        <!-- photos -->
+        <div class="project_summary bg-dark-cu content-100 shadow-light">
+            <div class="heading">
+                <span class="heading-1">Photo</span>
+                <span class="heading-2">Gallery</span>
             </div>
-        </div>
 
-        <div class="row content-80 ">
-            <div class="col-md-12 sub-container gallery gallery-coll">
-                <div class="heading coll-heading">
-                    <div class="left">
-                        <span class="heading-1">2021</span>
-                        <span class="heading-2">Gallery</span>
-                        <div class="counter">
-                            <span class="total-photos">30</span><span>Photos</span>
+            <div class="row content-80 ">
+                @if($year25==true)
+                    <div class="col-md-12 sub-container gallery gallery-coll">
+                        <div class="heading coll-heading">
+                            <div class="left">
+                                <span class="heading-1">2025</span>
+                                <span class="heading-2">Gallery</span>
+                                <div class="counter">
+                                    <span class="total-photos">30</span><span>Photos</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-circle-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="row phptos ">
+                            @foreach($image as $images)
+                                @php
+                                    $year = date("Y", strtotime($images->updated_at));
+                                @endphp
+                                @if($images->status == 1 && $year == 2025)
+                                    <div class="col-md-3 gallery-image">
+                                        <img src="{{asset('storage/'.$images->image)}}" alt="gallery">
+                                        <input type="hidden"
+                                               value="{{$images->title}}">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
-                    <div class="right">
-                        <i class="fa-solid fa-circle-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <a href="../image/gallery/gallery-1.jpg"><img src="../image/gallery/gallery-1.jpg"
-                                                                      alt="gallery"></a>
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-3.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-5.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-6.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-7.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-10.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-9.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row content-80 ">
-            <div class="col-md-12 sub-container gallery gallery-coll">
-                <div class="heading coll-heading">
-                    <div class="left">
-                        <span class="heading-1">2020</span>
-                        <span class="heading-2">Gallery</span>
-                        <div class="counter">
-                            <span class="total-photos">30</span><span>Photos</span>
+                @endif
+                @if($year24==true)
+                    <div class="col-md-12 sub-container gallery gallery-coll">
+                        <div class="heading coll-heading">
+                            <div class="left">
+                                <span class="heading-1">2024</span>
+                                <span class="heading-2">Gallery</span>
+                                <div class="counter">
+                                    <span class="total-photos">30</span><span>Photos</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-circle-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="row phptos ">
+                            @foreach($image as $images)
+                                @php
+                                    $year = date("Y", strtotime($images->updated_at));
+                                @endphp
+                                @if($images->status == 1 && $year == 2024)
+                                    <div class="col-md-3 gallery-image">
+                                        <img src="{{asset('storage/'.$images->image)}}" alt="gallery">
+                                        <input type="hidden"
+                                               value="{{$images->title}}">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
-                    <div class="right">
-                        <i class="fa-solid fa-circle-chevron-down"></i>
+                @endif
+                @if($year23==true)
+                    <div class="col-md-12 sub-container gallery gallery-coll">
+                        <div class="heading coll-heading">
+                            <div class="left">
+                                <span class="heading-1">2023</span>
+                                <span class="heading-2">Gallery</span>
+                                <div class="counter">
+                                    <span class="total-photos">30</span><span>Photos</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-circle-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="row phptos ">
+                            @foreach($image as $images)
+                                @php
+                                    $year = date("Y", strtotime($images->updated_at));
+                                @endphp
+                                @if($images->status == 1 && $year == 2023)
+                                    <div class="col-md-3 gallery-image">
+                                        <img src="{{asset('storage/'.$images->image)}}" alt="gallery">
+                                        <input type="hidden"
+                                               value="{{$images->title}}">
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <a href="../image/gallery/gallery-1.jpg"><img src="../image/gallery/gallery-1.jpg"
-                                                                      alt="gallery"></a>
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
+                @endif
+                @if($year22==true)
+                    <div class="col-md-12 sub-container gallery gallery-coll">
+                        <div class="heading coll-heading">
+                            <div class="left">
+                                <span class="heading-1">2022</span>
+                                <span class="heading-2">Gallery</span>
+                                <div class="counter">
+                                    <span class="total-photos">30</span><span>Photos</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <i class="fa-solid fa-circle-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="row phptos ">
+                            @foreach($image as $images)
+                                @php
+                                    $year = date("Y", strtotime($images->updated_at));
+                                @endphp
+                                @if($images->status == 1 && $year == 2022)
+                                    <div class="col-md-3 gallery-image">
+                                        <img src="{{asset('storage/'.$images->image)}}" alt="gallery">
+                                        <input type="hidden"
+                                               value="{{$images->title}}">
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-3.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-2.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-5.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-6.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-7.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-10.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-9.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
-                <div class="row phptos">
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-7.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-10.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                    <div class="col-md-3 gallery-image">
-                        <img src="../image/gallery/gallery-4.jpg" alt="gallery">
-                        <input type="hidden"
-                               value="Lorem ipsum dolor, sit amet consectetur a at.Lorem ipsum dolor, sit amet consectetur a at.">
-                    </div>
-                </div>
+                @endif
+
             </div>
-        </div>
-    </div><!-- photos end -->
+        </div><!-- photos end -->
+    @endif
 
 
     <!-- photo show modal -->
@@ -316,9 +186,8 @@
                 <div class="modal-body" id="modalBody">
                     <img src="" alt="">
                 </div>
-                <p class="img-description"> </p>
+                <p class="img-description"></p>
             </div>
         </div>
     </div> <!-- photo show modal end -->
-
 @endsection

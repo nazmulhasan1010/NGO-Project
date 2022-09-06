@@ -112,7 +112,7 @@
                                                 <label for="facebookLink">Facebook Links<span class="req">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" id="facebookLink"
-                                                       name="facebookLink" placeholder="Paste url here">
+                                                       name="facebookLink" placeholder="https://www.facebook.com">
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                                         class="req">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" id="youtubeLink"
-                                                       name="youtubeLink" placeholder="Paste url here">
+                                                       name="youtubeLink" placeholder="https://www.youtube.com">
 
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
                                                         class="req">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" id="twitterLinks"
-                                                       name="twitterLinks" placeholder="Paste url here">
+                                                       name="twitterLinks" placeholder="https://twitter.com">
 
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                                         class="req">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" id="linkedInLink"
-                                                       name="linkedInLink" placeholder="Paste url here">
+                                                       name="linkedInLink" placeholder="http://linkedInLink">
 
                                             </div>
                                         </div>

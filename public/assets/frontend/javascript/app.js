@@ -80,10 +80,6 @@ $('.gallery-image').click(function () {
     $('#photoShow').modal('show');
 });
 
-$('.modal-close').click(function () {
-    $('#photoShow').modal('hide');
-});
-
 // menu bar
 
 
@@ -140,3 +136,19 @@ $(document).click(function (e) {
         $('.header .menu_bar .menus').css('display', 'none')
     }
 })
+
+$('.mapShow').click(function () {
+    let link = $(this).data('link');
+    // alert(link)
+    $('#modalBody').html(link);
+    $('#modalBody iframe').css({
+        'width': '100%',
+    });
+    $('#mapShow').modal('show');
+});
+
+// modal hide
+
+$('.modal-close').click(function () {
+    $('.modal').modal('hide');
+});

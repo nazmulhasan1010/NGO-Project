@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contacts;
+use App\Models\Links;
 
 class pageController extends Controller
 {
+
     public function faq()
     {
         return view('frontend.pages.faq');

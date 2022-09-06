@@ -454,13 +454,27 @@
 @media screen and (max-width: 600px) {
     .gallery {
         .photos {
-
             .col-md-4,
             .col-md-3 {
                 img {
                     width: 100%;
                     height: 70px;
                 }
+            }
+        }
+    }
+    .active-gallery {
+        .phptos {
+            height: auto;
+            .col-md-4,
+            .col-md-3 {
+                img {
+                    width: 100%;
+                    height: 80px;
+                }
+            }
+            .col-md-3 {
+                width: 20.1%;
             }
         }
     }
@@ -509,6 +523,21 @@
             iframe {
                 width: 100%;
                 height: 150px;
+            }
+        }
+    }
+    .active-gallery {
+        .phptos {
+            height: auto;
+            .col-md-4,
+            .col-md-3 {
+                img {
+                    width: 100%;
+                    height: 60px;
+                }
+            }
+            .col-md-3 {
+                width: 20.1%;
             }
         }
     }

@@ -1,8 +1,14 @@
 <!-- contact modal -->
+@php
+    $communication = getCommunication();
+@endphp
 <div class="contact_modal">
     <div class="left">
-        <p><i class="fa-solid fa-envelope"></i> example@gmail.com</p>
-        <p><i class="fa-solid fa-phone"></i> 0167272882</p>
+
+        @foreach($communication['contact'] as $contacts)
+            <p><i class="fa-solid fa-envelope"></i>{{$contacts->contactMail}} </p>
+            <p><i class="fa-solid fa-phone"></i> {{$contacts->contactNumber}}</p>
+        @endforeach
     </div>
     <div class="right d-flex justify-content-end">
         <div class="lan_cng_btn" id="lanBtn">
@@ -22,7 +28,7 @@
     <div class="header_content menu_bar" id="menuBar">
         <i class="fa-solid fa-bars menu-ico-more" id="menuShow"></i>
         <!-- <i class="fa-solid fa-ellipsis-vertical menu-ico"></i> -->
-        <div class="menus" >
+        <div class="menus">
             <div class="menu-head">
                 <img src="{{asset('assets/frontend/img-icon/pksf.jpeg')}}" alt="">
                 <i class="fa-solid fa-xmark " id="menuClose"></i>

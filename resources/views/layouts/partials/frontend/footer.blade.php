@@ -7,10 +7,16 @@
                 Etiam nec dignissim
                 elit, at dignissim enim.</p>
             <div class="footer-social-ico">
-                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                @php
+                    $link = getCommunication()['links'];
+                @endphp
+                @foreach($link as $links)
+                    <a href="{{$links->facebookLinks}}"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="{{$links->youtubeLinks}}"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="{{$links->twitterLinks}}"><i class="fa-brands fa-square-twitter"></i></a>
+                    <a href="{{$links->linkedInLinks}}"><i class="fa-brands fa-linkedin"></i></a>
+                @endforeach
+
             </div>
         </div>
         <div class="commom-links right">
