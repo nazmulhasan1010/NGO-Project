@@ -99,7 +99,7 @@ menus.forEach(button => {
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(0deg)');
         } else {
             //  when menu not active
-            $(this).children('.option-main').css('display', 'block')
+            $(this).children('.option-main').css('display', 'block').
             $(this).children('.option-main').children('.menu-option').css('display', 'block');
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(90deg)')
             $('.menus ul li').not(this).children('.option-main').children('.menu-option').css('display', 'none');

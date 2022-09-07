@@ -78,4 +78,16 @@ class pageController extends Controller
     {
         return view('frontend.pages.notice');
     }
+
+    function activities()
+    {
+        return view('frontend.pages.activities.activities');
+    }
+
+    function activity($id)
+    {
+        $activities = activities($id);
+        return view('frontend.pages.activities.activity', ['activities' => $activities]);
+    }
+
 }

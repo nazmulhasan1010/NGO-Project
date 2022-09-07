@@ -19,6 +19,7 @@ class About extends Migration
             $table->string('project_goal',2000)->nullable();
             $table->string('mission',2000)->nullable();
             $table->string('values',2000)->nullable();
+            $table->string('image',255)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

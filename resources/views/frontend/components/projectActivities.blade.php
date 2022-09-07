@@ -10,10 +10,10 @@
                 @if($activity->status==1)
                     <div class="col-md-4 activities">
                         <img src="{{asset('storage/' . $activity->image)}}" alt="">
-                        <div class="info-field">
+                        <div class="info-field home">
                             <h2>{{$activity->title}}</h2>
                             {!! $activity->description  !!}
-                            <a href="#">
+                            <a href="{{url('activity/'.$activity->id)}}">
                                 <button type="button" class="more-button">Learn more</button>
                             </a>
                         </div>
@@ -22,7 +22,7 @@
             @endforeach
 
         </div>
-        <a href="#">
+        <a href="{{url('activities')}}">
             <button type="button" class="more-button see-all">See All <i
                     class="fa-solid fa-angles-right"></i></button>
         </a>

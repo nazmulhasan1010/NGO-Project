@@ -41,16 +41,29 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Overview</th>
+                                        <th>Image</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($about as $key=>$item)
+                                        @php
+                                            if (strlen($item->project_overview)>100){
+                                               $overview_ = substr($item->project_overview,0,100);
+                                            }else{
+                                                 $overview_ = $item->project_overview ;
+                                            }
+                                        @endphp
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->project_overview }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                     width="100px"
+                                                     height="60px">
+                                            </td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
                                             </td>
@@ -93,7 +106,7 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('about.store')}}" method="POST">
+                            <form action="{{ route('about.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title">Add New Overview</h5>
@@ -101,8 +114,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-
-                                    <div class="">
+                                    <div class="row">
                                         <input type="hidden" value="project_overview.Project overview" name="hint">
                                         <label for="overview">Overview <span class="req">*</span> </label>
                                         <textarea class="form-control" id="overview" name="overview"
@@ -112,7 +124,24 @@
                                             <span class="text-danger">{{ $errors->first('project_overview') }}</span>
                                         @endif
                                     </div>
-
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="{{asset('assets/backend/images/avatar/upload.png')}}"
+                                                 class="imagePreView imagePreViewSelect imagePreViewEmpty">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="choseEditImage">
+                                                    <label for="uploadImage" class="editImageUp btn">Chose a
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="uploadImage"
+                                                           name="summaryImage" hidden>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
@@ -128,7 +157,7 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('about.update','project_overview.Project overview')}}" method="POST">
+                            <form action="{{ route('about.update','project_overview.Project overview')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
@@ -165,6 +194,28 @@
                                                 @if ($errors->has('status'))
                                                     <span class="text-danger">{{ $errors->first('status') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="" id="imagePreView"
+                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="choseEditImage">
+                                                    <button type="button" class="edit-image" id="restoreImage">Restore
+                                                    </button>
+                                                    <label for="editImage" class="editImageUp btn">Chose a new
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="editImage"
+                                                           name="editSummaryImage"
+                                                           hidden>
+                                                    <input type="hidden" id="old_image" name="old_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -217,6 +268,9 @@
                     $('#row_id').val(response.row_data.id);
                     $('#edit_category_name').val(response.row_data.project_overview);
                     $('#row_status').val(response.row_data.status);
+                    $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + response.row_data.image);
+                    $('#restoreImage').attr('data-id', response.row_data.image);
+                    $('#old_image').val(response.row_data.image);
                 },
                 error: function (response) {
                     alert("Error")

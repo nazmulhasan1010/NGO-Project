@@ -8,6 +8,7 @@ use App\Models\VideoGallery;
 use App\Models\Beneficiary;
 use App\Models\About;
 use App\Models\Workingarea;
+use App\Models\Activity;
 
 if (!function_exists('getCommunication')) {
     function getCommunication(): array
@@ -43,5 +44,14 @@ if (!function_exists('getAbout')){
 if (!function_exists('getWorkingArea')){
     function getWorkingArea(){
         return Workingarea::latest()->first();
+    }
+}
+if (!function_exists('activities')){
+    function activities($id){
+        if ($id=='all'){
+            return Activity::latest()->get();
+        }else{
+            return Activity::where('id','=',$id)->get();
+        }
     }
 }

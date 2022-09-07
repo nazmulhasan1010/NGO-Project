@@ -45,6 +45,8 @@ Route::get('events',[pageController::class,'events']);
 Route::get('news',[pageController::class,'news']);
 Route::get('topics',[pageController::class,'topics']);
 Route::get('notice',[pageController::class,'notice']);
+Route::get('activities',[pageController::class,'activities']);
+Route::get('activity/{id}',[pageController::class,'activity']);
 
 
 //Backend

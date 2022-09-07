@@ -24,6 +24,8 @@
     <link href="{{ asset('assets/frontend/scss/main.css') }}" rel="stylesheet">
     {{--    <link href="{{ asset('assets/frontend/css/responsive.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('assets/frontend/scss/responsive.css') }}" rel="stylesheet">
+    @stack('vendor-css')
+    @stack('onPage-css')
 </head>
 <body>
 @include('layouts.partials.frontend.header')

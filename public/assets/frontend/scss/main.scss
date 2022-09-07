@@ -144,7 +144,8 @@ a {
             color: $textColor-70;
         }
 
-        ul, ol {
+        ul,
+        ol {
             list-style: decimal;
             font-size: 1.2rem;
             @include poppins(400);
@@ -306,9 +307,10 @@ a {
                 display: none;
                 padding: 5px;
                 margin: 20px 20px 0 20px;
+                transition: opacity 1s ease-out;
 
                 img {
-                    width: 200px;
+                    width: 150px;
                 }
 
                 .fa-xmark {
@@ -365,7 +367,6 @@ a {
                         z-index: 9999;
                         @include disFlex;
                         padding-top: 30px;
-                        transition: display .5s;
 
                         .menu-option {
                             background-color: $bgWhite;
@@ -471,16 +472,16 @@ a {
 
 // project summary start --------------------------
 .project_summary {
+
     .summary {
-        height: 300px;
+        transition: .5s linear;
+        height: 330px;
         width: 30%;
         background-color: $cardBg;
         margin-left: 30px;
-        border-radius: 20px;
-        border: 1px solid $textColor-20;
+        border-radius: 10px;
+        border: 1px solid $mainbg-50;
         @include disFlexCol;
-        padding: 20px;
-        transition: .2s;
 
         &:nth-child(1) {
             margin-left: 0;
@@ -490,28 +491,66 @@ a {
             height: 20vh;
 
             img {
-                height: 100px;
-                transition: .3s;
+                width: 150px;
+                height: 130px;
             }
         }
 
         h2 {
             font-size: 2.5rem;
             @include montserrat(700);
-            margin: 20px 0 0 0;
+            margin: 10px 0 20px 0;
             text-align: center;
         }
 
         p {
             font-size: 1.5rem;
             text-align: center;
+            padding: 0 10px;
         }
     }
 
     .project-summary-more {
-        p {
-            font-size: 2rem;
+        .summary-more {
+            @include disFlexCol;
+            overflow: hidden;
+            padding-left: 40px;
+
+            &:nth-child(2) {
+                padding: 40px ;
+            }
+
+            img {
+
+                height: 50%;
+                width: auto;
+
+            }
+
+            p {
+                font-size: 2rem;
+                color: $bgWhite-50;
+                position: relative;
+                &::first-letter{
+                    font-size: 5rem;
+                }
+
+                &::before {
+                    content: ",,";
+                    font-size: 5rem;
+                    color: $bgWhite;
+                    margin-right: 10px;
+                }
+                &::after{
+                     content: ",,";
+                     font-size: 5rem;
+                     color: $bgWhite;
+                     margin-left: 10px;
+                }
+            }
+
         }
+
     }
 }
 
@@ -546,14 +585,17 @@ a {
         }
     }
 }
-.working-area-12{
-   padding:0;
+
+.working-area-12 {
+    padding: 0;
+
     img {
         width: 100%;
         height: 60vh;
         border: 2px solid $mainbg-50;
         border-bottom: none;
     }
+
     &:nth-child(2) {
         padding: 50px 0 50px 20px;
         border-top: none;
@@ -661,7 +703,7 @@ a {
 .objective {
     @include bgImage;
     background-image: url('../img-icon/dot-bg-2.png'),
-    linear-gradient(to top, $blue-gray, $blue-gray);
+        linear-gradient(to top, $blue-gray, $blue-gray);
     background-position: left center;
 
     .objectives {
@@ -685,12 +727,52 @@ a {
         padding: 0 0 5px 0;
         border-radius: 5px;
 
+        &:nth-child(n+4) {
+            margin-top: 50px;
+        }
+
         img {
             width: 100%;
             border-radius: 4px 4px 0 0;
         }
-    }
 
+        .info-field.home {
+
+            ul,
+            ol {
+                li {
+                    &:nth-child(n+5) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.activity.show {
+    .activities {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 70vh;
+        }
+
+        .info-field {
+
+            ul,
+            ol {
+                font-size: 2rem;
+
+                li {
+                    &:nth-child(n+5) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // project activities end--------------------------
@@ -732,7 +814,7 @@ a {
 .en-partners {
     @include bgImage;
     background-image: url('../img-icon/dot-bg-2.png'),
-    linear-gradient(to top, $blue-gray, $mainbg-20);
+        linear-gradient(to top, $blue-gray, $mainbg-20);
     background-position: left center;
 
     .partner {
@@ -753,6 +835,7 @@ a {
 // gallery--------------------------
 .gallery {
     .photos {
+
         .col-md-4,
         .col-md-3 {
             width: 30%;
@@ -955,7 +1038,7 @@ a {
     letter-spacing: 2px;
     @include bgImage;
     background-image: url('../img-icon/dot-bg-2.png'),
-    linear-gradient(to top, $blue-gray, $blue-gray);
+        linear-gradient(to top, $blue-gray, $blue-gray);
     background-position: left center;
 
 

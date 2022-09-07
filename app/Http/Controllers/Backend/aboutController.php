@@ -10,6 +10,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class aboutController extends Controller
 {
@@ -61,9 +62,11 @@ class aboutController extends Controller
 //        return $request->all();
         $this->validate($request, [
             'overview' => 'required',
+            'summaryImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:5048'
         ]);
         $instructions = explode('.', $request->hint);
         $ins = $instructions[0];
+        $sta = '';
         $checkExists = About::select($ins)->get();
         // return $checkExists;
         $row = count(json_decode($checkExists, true));
@@ -84,8 +87,10 @@ class aboutController extends Controller
             return redirect()->back();
         } else {
             try {
+                $fileName = imageUploadWithCustomSize($request->summaryImage, "1200", "800", "about");
                 $addAbout = new About();
                 $addAbout->$ins = $request->overview;
+                $addAbout->image = 'about/'.$fileName;
                 $addAbout->save();
 
                 Toastr::success($instructions[1] . ' ' . 'Successfully Added');
@@ -143,10 +148,18 @@ class aboutController extends Controller
         $inst = explode('.', $cat);
         $column = $inst[0];
         try {
+            if ($request->old_image === 'change') {
+                $fileName = 'about/' . imageUploadWithCustomSize($request->editSummaryImage, "1200", "800", "about");
+                Storage::delete('public/' . About::findOrFail($request->old_id)->image);
+            } else {
+                $fileName = $request->old_image;
+            }
+
             $about = About::findOrFail($request->old_id);
 
             $about->$column = $request->category_name;
             $about->status = $request->row_status;
+            $about->image = $fileName;
             $about->update();
 
             Toastr::success($inst[1] . ' Successfully Update');

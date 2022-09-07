@@ -41,7 +41,8 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Mission</th>
+                                        <th>Image</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -51,6 +52,11 @@
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->mission }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                     width="100px"
+                                                     height="60px">
+                                            </td>
                                             <td>
                                                 {{ $item->status ==  1 ? 'Active' : 'Inactive'}}
                                             </td>
@@ -92,7 +98,7 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('about.store')}}" method="POST">
+                            <form action="{{ route('about.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title">Add New Mission</h5>
@@ -101,12 +107,30 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="">
+                                    <div class="row">
                                         <input type="hidden" value="mission.Project Mission" name="hint">
                                         <label for="mission">Mission <span class="req">*</span> </label>
                                         <textarea class="form-control" id="mission" name="overview"
                                                   placeholder="Mission">
                                         </textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="{{asset('assets/backend/images/avatar/upload.png')}}"
+                                                 class="imagePreView imagePreViewSelect imagePreViewEmpty">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="choseEditImage">
+                                                    <label for="uploadImage" class="editImageUp btn">Chose a
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="uploadImage"
+                                                           name="summaryImage" hidden>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -124,7 +148,7 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('about.update','mission.Project Mission')}}" method="POST">
+                            <form action="{{ route('about.update','mission.Project Mission')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
@@ -161,6 +185,28 @@
                                                 @if ($errors->has('status'))
                                                     <span class="text-danger">{{ $errors->first('status') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="" id="imagePreView"
+                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="choseEditImage">
+                                                    <button type="button" class="edit-image" id="restoreImage">Restore
+                                                    </button>
+                                                    <label for="editImage" class="editImageUp btn">Chose a new
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="editImage"
+                                                           name="editSummaryImage"
+                                                           hidden>
+                                                    <input type="hidden" id="old_image" name="old_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -213,6 +259,9 @@
                     $('#row_id').val(r_val.id);
                     $('#edit_category_name').val(r_val.mission);
                     $('#row_status').val(r_val.status);
+                    $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
+                    $('#restoreImage').attr('data-id', r_val.image);
+                    $('#old_image').val(r_val.image);
                 },
                 error: function (response) {
                     alert("Error")
