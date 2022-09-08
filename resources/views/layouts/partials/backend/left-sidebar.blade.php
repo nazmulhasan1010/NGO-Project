@@ -111,6 +111,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('faq.index')}}" class="ai-icon" aria-expanded="false">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span class="nav-text">FAQ</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('beneficiaryLocations.index')}}" class="ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-map-location"></i>
                     <span class="nav-text">Enterprise Location</span>

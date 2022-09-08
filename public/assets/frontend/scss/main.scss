@@ -17,6 +17,10 @@ html {
     overflow-x: hidden;
 }
 
+p {
+    text-align: justify;
+}
+
 .content-80 {
     width: 80%;
     @include disFlexCu(center, stretch);
@@ -517,7 +521,7 @@ a {
             padding-left: 40px;
 
             &:nth-child(2) {
-                padding: 40px ;
+                padding: 40px;
             }
 
             img {
@@ -531,7 +535,8 @@ a {
                 font-size: 2rem;
                 color: $bgWhite-50;
                 position: relative;
-                &::first-letter{
+
+                &::first-letter {
                     font-size: 5rem;
                 }
 
@@ -541,11 +546,12 @@ a {
                     color: $bgWhite;
                     margin-right: 10px;
                 }
-                &::after{
-                     content: ",,";
-                     font-size: 5rem;
-                     color: $bgWhite;
-                     margin-left: 10px;
+
+                &::after {
+                    content: ",,";
+                    font-size: 5rem;
+                    color: $bgWhite;
+                    margin-left: 10px;
                 }
             }
 
@@ -1078,15 +1084,20 @@ a {
 //FAQ  --------------------------
 .faq-main {
     .faq-field {
+        @include disFlex;
+
         .faq-fields {
             @include montserrat(600);
-            padding: 0 50px;
+
             height: 80vh;
             overflow-y: scroll;
             @include scrollbar;
 
-            &:nth-child(2)::-webkit-scrollbar {
-                display: none;
+            &:nth-child(2) {
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
             }
 
             .faq-qna {
@@ -1141,8 +1152,9 @@ a {
                         color: $textColor-50;
                     }
 
-                    input {
-                        font-size: 1.8rem;
+                    input,
+                    textarea {
+                        font-size: 1.5rem;
                         padding: 10px 15px;
                     }
                 }
@@ -1176,3 +1188,75 @@ a {
 }
 
 //show modal end --------------------------
+
+//success stories --------------------------
+.success {
+    .successes {
+        .date {
+            margin-top: 10px;
+
+            span {
+                color: $bgWhite-50;
+                font-size: 1.6rem;
+
+                &:nth-child(1) {
+                    color: $bgSecondary;
+                }
+
+                &:nth-child(2) {
+                    margin-left: 10px;
+                    @include montserrat(600);
+                }
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .info-field {
+            padding: 0;
+
+            p {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+                margin: 10px 0 20px 0;
+            }
+
+            a {
+                .more-button {
+                    margin: 20px 0 40px 0;
+                }
+            }
+        }
+
+        .latest-post-links {
+            &:hover {
+                .lp-links {
+                    h2 {
+                        color: $bgSecondary2;
+                    }
+                }
+            }
+
+            .lp-links {
+                cursor: pointer;
+                img {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                h2 {
+                    font-size: 1.5rem;
+                    @include montserrat(600);
+                    color: $bgWhite-70;
+                }
+            }
+        }
+    }
+}
+
+//success stories end --------------------------

@@ -66,31 +66,11 @@
                     </li>
                 </a>
 
-                <li>
-                    <div class="option-head">Success Stories<i class="fa-solid fa-caret-right"></i></div>
-                    <div class="option-main">
-                        <div class="menu-option">
-                            <a href="{{url('success')}}">
-                                <div class="options">success</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">Project goal</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">working area</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">mission</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">Image gallery</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">values</div>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                <a href="{{url('stories')}}">
+                    <li>
+                        <div class="option-head">Success Stories</div>
+                    </li>
+                </a>
 
                 <a href="{{url('/faq')}}">
                     <li>

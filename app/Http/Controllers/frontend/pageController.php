@@ -14,80 +14,89 @@ class pageController extends Controller
         return view('frontend.pages.faq');
     }
 
-    function photos()
+    public function photos()
     {
         return view('frontend.pages.imageGallery');
     }
 
-    function videos()
+    public function videos()
     {
         return view('frontend.pages.videoGallery');
     }
 
-    function overview()
+    public function overview()
     {
         return view('frontend.pages.projectOverview');
     }
 
-    function goal()
+    public function goal()
     {
         return view('frontend.pages.projectGoal');
     }
 
-    function mission()
+    public function mission()
     {
         return view('frontend.pages.mission');
     }
 
-    function workingarea()
+    public function workingarea()
     {
         return view('frontend.pages.workingArea');
     }
 
-    function entrepreneurs()
+    public function entrepreneurs()
     {
         return view('frontend.pages.entrepreneurs');
     }
 
-    function success()
+    public function success()
     {
         return view('frontend.pages.successStories');
     }
 
-    function calender()
+    public function calender()
     {
         return view('frontend.pages.calender');
     }
 
-    function events()
+    public function events()
     {
         return view('frontend.pages.events');
     }
 
-    function news()
+    public function news()
     {
         return view('frontend.pages.news');
     }
 
-    function topics()
+    public function topics()
     {
         return view('frontend.pages.topics');
     }
 
-    function notice()
+    public function notice()
     {
         return view('frontend.pages.notice');
     }
 
-    function activities()
+    public function activities()
     {
         return view('frontend.pages.activities.activities');
     }
 
-    function activity($id)
+    public function activity($id)
     {
         $activities = activities($id);
         return view('frontend.pages.activities.activity', ['activities' => $activities]);
+    }
+    public function stories(){
+        return view('frontend.pages.success.stories');
+    }
+
+    public function story($id)
+    {
+        $story = success($id);
+        return view('frontend.pages.success.story', ['story' => $story]);
     }
 
 }

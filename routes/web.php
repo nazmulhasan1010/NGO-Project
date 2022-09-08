@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\beneficiaryLocationsController;
 use App\Http\Controllers\Backend\contactController;
 use App\Http\Controllers\Backend\developmentComponentController;
 use App\Http\Controllers\Backend\eventController;
+use App\Http\Controllers\Backend\faqController;
 use App\Http\Controllers\Backend\foodDemandController;
 use App\Http\Controllers\Backend\foodsController;
 use App\Http\Controllers\Backend\foodValueController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Backend\successStoriesController;
 use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\clientController;
 use App\Http\Controllers\frontend\frontHomeController;
 use App\Http\Controllers\frontend\pageController;
 use Illuminate\Support\Facades\Auth;
@@ -31,22 +33,25 @@ use App\Http\Controllers\Backend\UsersController;
 
 //frontend
 Route::get('/', [frontHomeController::class, 'index']);
-Route::get('faq',[pageController::class,'faq']);
-Route::get('gallery/photos',[pageController::class,'photos']);
-Route::get('gallery/videos',[pageController::class,'videos']);
-Route::get('overview',[pageController::class,'overview']);
-Route::get('goal',[pageController::class,'goal']);
-Route::get('mission',[pageController::class,'mission']);
-Route::get('workingarea',[pageController::class,'workingarea']);
-Route::get('entrepreneurs',[pageController::class,'entrepreneurs']);
-Route::get('success',[pageController::class,'success']);
-Route::get('calender',[pageController::class,'calender']);
-Route::get('events',[pageController::class,'events']);
-Route::get('news',[pageController::class,'news']);
-Route::get('topics',[pageController::class,'topics']);
-Route::get('notice',[pageController::class,'notice']);
-Route::get('activities',[pageController::class,'activities']);
-Route::get('activity/{id}',[pageController::class,'activity']);
+Route::get('faq', [pageController::class, 'faq']);
+Route::get('gallery/photos', [pageController::class, 'photos']);
+Route::get('gallery/videos', [pageController::class, 'videos']);
+Route::get('overview', [pageController::class, 'overview']);
+Route::get('goal', [pageController::class, 'goal']);
+Route::get('mission', [pageController::class, 'mission']);
+Route::get('workingarea', [pageController::class, 'workingarea']);
+Route::get('entrepreneurs', [pageController::class, 'entrepreneurs']);
+Route::get('success', [pageController::class, 'success']);
+Route::get('calender', [pageController::class, 'calender']);
+Route::get('events', [pageController::class, 'events']);
+Route::get('news', [pageController::class, 'news']);
+Route::get('topics', [pageController::class, 'topics']);
+Route::get('notice', [pageController::class, 'notice']);
+Route::get('activities', [pageController::class, 'activities']);
+Route::get('activity/{id}', [pageController::class, 'activity']);
+Route::get('stories', [pageController::class, 'stories']);
+Route::get('story/{id}', [pageController::class, 'story']);
+Route::post('message', [clientController::class, 'message']);
 
 
 //Backend
@@ -86,4 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('contact', contactController::class);
     Route::resource('links', linksController::class);
     Route::resource('partner', partnerController::class);
+    Route::resource('faq', faqController::class);
 });
+
+
