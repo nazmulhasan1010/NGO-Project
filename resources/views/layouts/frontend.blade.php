@@ -32,6 +32,7 @@
 @yield('content')
 @include('layouts.partials.frontend.footer')
 {{--javascript--}}
+@stack('onPage-js')
 <script src="{{asset('assets/frontend/javascript/jquery-3.6.0.min.js')}}"></script>
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Calender')
+@section('title','Notice')
 @section('content')
     @include('layouts.partials.frontend.pageTitle')
 

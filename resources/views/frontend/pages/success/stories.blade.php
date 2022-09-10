@@ -1,16 +1,10 @@
 @extends('layouts.frontend')
 @section('title','Stories')
 @section('content')
+    @include('layouts.partials.frontend.pageTitle')
     @php
         $stories = success('all');
     @endphp
-        <!-- page title -->
-    <div class="row bg-dark-cu page-title">
-        <div class="col-md-12 page-titles">
-            <a href="{{url('/')}}">home</a>
-            <a href="{{url('faq')}}">Stories</a>
-        </div>
-    </div> <!-- page title end -->
 
     <div class="project_summary bg-dark-cu content-100 success">
         <div class="row content-80 ">
@@ -47,22 +41,7 @@
                     <span class="heading-1">Latest</span>
                     <span class="heading-2">Post</span>
                 </div>
-                @foreach(getLatestStory() as $latestStory)
-                    @if($latestStory->status == 1)
-                        <a href="{{url('story/'.$latestStory->id)}}" class="row latest-post-links">
-                            <div class="col-md-6 lp-links ">
-                                <img src="{{asset('storage/'.$latestStory->image)}}" alt="">
-                            </div>
-                            <div class="col-md-6 lp-links">
-                                <h2>{{$latestStory->title}}</h2>
-                                <div class="date">
-                                    <span><i class="fa-regular fa-clock"></i></span>
-                                    <span>{{date("d", strtotime($latestStory->updated_at)).'  '.substr(date("F", strtotime($latestStory->updated_at)),0,3).'  '.date("Y", strtotime($latestStory->updated_at)) }}</span>
-                                </div>
-                            </div>
-                        </a>
-                    @endif
-                @endforeach
+                @include('frontend.pages.component.latestPost')
             </div>
         </div>
     </div>

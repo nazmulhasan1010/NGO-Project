@@ -1,16 +1,10 @@
 @extends('layouts.frontend')
 @section('title','FAQ')
 @section('content')
+    @include('layouts.partials.frontend.pageTitle')
     @php
         $faq = getFaq();
     @endphp
-    <!-- page title -->
-    <div class="row bg-dark-cu page-title">
-        <div class="col-md-12 page-titles">
-            <a href="{{url('/')}}">home</a>
-            <a href="{{url('faq')}}">faq</a>
-        </div>
-    </div> <!-- page title end -->
 
     <!-- FAQ -->
     <div class="content-100 bg-white-cu faq-main">

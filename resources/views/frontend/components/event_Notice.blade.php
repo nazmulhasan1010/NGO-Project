@@ -2,14 +2,13 @@
 <div class="project_summary bg-white-cu content-100">
     <div class="row content-80 event-notices">
         @if($event)
-
             <div class="col-md-6 sub-container event-notice">
                 <div class="heading">
-                    <span class="heading-1">Umcoming</span>
+                    <span class="heading-1">Upcoming</span>
                     <span class="heading-2">Events</span>
                 </div>
                 @foreach($event as $events)
-                    @if($events->status==1)
+                    @if($events->status===1)
 
                         <div class="row event">
                             <div class="col-md-4 events">
@@ -37,7 +36,7 @@
                                     }
                                 @endphp
                                 <p>{{$des}}</p>
-                                <a href="#">
+                                <a href="{{url('event/'.$events->id)}}">
                                     <button type="button" class="more-button">Learn more</button>
                                 </a>
                             </div>
@@ -45,7 +44,7 @@
 
                     @endif
                 @endforeach
-                <a href="#" class="more-link">
+                <a href="{{url('events')}}" class="more-link">
                     <button type="button" class="more-button see-all">See All <i
                             class="fa-solid fa-angles-right"></i></button>
                 </a>
@@ -57,7 +56,7 @@
                     <span class="heading-1">Notice</span>
                 </div>
                 @foreach($notice as $notices)
-                    @if($notices->status==1)
+                    @if($notices->status===1)
                         <div class="row notice">
                             <div class="col-md-2 notices">
                                 <div class="date">

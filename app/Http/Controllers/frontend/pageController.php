@@ -61,7 +61,13 @@ class pageController extends Controller
 
     public function events()
     {
-        return view('frontend.pages.events');
+        return view('frontend.pages.events.events');
+    }
+
+    public function event($id)
+    {
+        $event = getEvents($id);
+        return view('frontend.pages.events.event',['event'=>$event]);
     }
 
     public function news()
@@ -71,12 +77,12 @@ class pageController extends Controller
 
     public function topics()
     {
-        return view('frontend.pages.topics');
+        return view('frontend.pages.blog');
     }
 
-    public function notice()
+    public function notices()
     {
-        return view('frontend.pages.notice');
+        return view('frontend.pages.notice.notices');
     }
 
     public function activities()

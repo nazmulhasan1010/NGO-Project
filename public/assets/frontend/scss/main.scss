@@ -702,6 +702,35 @@ a {
     }
 }
 
+.event-show {
+    .event-notice {
+        .event {
+            //box-shadow: 4px 10px 20px $blue-gray;
+            box-shadow: 8px 8px 15px $blue-gray-50;
+            border-radius: 4px;
+
+            .events {
+                padding: 0;
+                @include disFlexCol;
+                align-items: flex-start;
+                justify-content: flex-start;
+
+                &:nth-child(2) {
+                    padding: 5px 20px 20px 20px;
+                    justify-content: center;
+                }
+
+                img {
+                    border-radius: 4px 0 0 4px;
+                    max-height: 250px;
+                }
+
+
+            }
+        }
+    }
+}
+
 // events and notices end --------------------------
 
 
@@ -1234,6 +1263,13 @@ a {
         }
 
         .latest-post-links {
+            .lp-links {
+                p {
+                    color: $bgWhite-50;
+                    font-size: 1.3rem;
+                }
+            }
+
             &:hover {
                 .lp-links {
                     h2 {
@@ -1244,6 +1280,7 @@ a {
 
             .lp-links {
                 cursor: pointer;
+
                 img {
                     width: 100%;
                     margin-bottom: 10px;

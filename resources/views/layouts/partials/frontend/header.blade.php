@@ -94,10 +94,10 @@
                 </a>
                 <a href="{{url('topics')}}">
                     <li>
-                        <div class="option-head">Topics</div>
+                        <div class="option-head">Blog</div>
                     </li>
                 </a>
-                <a href="{{url('notice')}}">
+                <a href="{{url('notices')}}">
                     <li>
                         <div class="option-head">Notice</div>
                     </li>

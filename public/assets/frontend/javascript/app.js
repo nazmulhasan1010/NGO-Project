@@ -58,30 +58,31 @@ $('.faq-qna').click(function () {
 
 $('.gallery-coll').click(function () {
     if ($(this).hasClass('active-gallery')) {
-        $(this).removeClass('active-gallery');
+        if ($('#photoShow').hasClass('show')){
+           return;
+        }else{
+            $(this).removeClass('active-gallery');
+        }
+
     } else {
         $(this).addClass('active-gallery');
         $('.gallery-coll').not(this).removeClass('active-gallery');
     }
 });
-
-
 let galleryLength = $('.gallery-coll').length;
 for (var i = 0; i < galleryLength; i++) {
     let photosOnAlbum = $('.gallery-coll').eq(i).children('.phptos').children('.col-md-3').length;
     $('.gallery-coll').eq(i).children('.coll-heading').children('.left').children('.counter').children('.total-photos').html(photosOnAlbum);
 }
 
+// menu bar
 $('.gallery-image').click(function () {
     let imgLink = $(this).children('img').attr('src');
     let description = $(this).children('input').val();
     $('#modalBody img').attr('src', imgLink);
     $('.modal-content .img-description').html(description);
-    $('#photoShow').modal('show');
+    $('#photoShow').modal('show').addClass('show');
 });
-
-// menu bar
-
 
 // active menus
 let menus = document.querySelectorAll('.menus ul li');
@@ -99,8 +100,7 @@ menus.forEach(button => {
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(0deg)');
         } else {
             //  when menu not active
-            $(this).children('.option-main').css('display', 'block').
-            $(this).children('.option-main').children('.menu-option').css('display', 'block');
+            $(this).children('.option-main').css('display', 'block').$(this).children('.option-main').children('.menu-option').css('display', 'block');
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(90deg)')
             $('.menus ul li').not(this).children('.option-main').children('.menu-option').css('display', 'none');
             $('.menus ul li').not(this).children('.option-main').css('display', 'none');

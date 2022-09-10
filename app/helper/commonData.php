@@ -11,6 +11,7 @@ use App\Models\Workingarea;
 use App\Models\Activity;
 use App\Models\FAQ;
 use App\Models\SuccessStories;
+use App\Models\Event;
 
 if (!function_exists('getCommunication')) {
     function getCommunication(): array
@@ -56,7 +57,7 @@ if (!function_exists('getWorkingArea')) {
 if (!function_exists('activities')) {
     function activities($id)
     {
-        if ($id == 'all') {
+        if ($id === 'all') {
             return Activity::latest()->get();
         } else {
             return Activity::where('id', '=', $id)->get();
@@ -74,9 +75,9 @@ if (!function_exists('getFaq')) {
 if (!function_exists('success')) {
     function success($id)
     {
-        if ($id == 'all') {
+        if ($id === 'all') {
             return SuccessStories::latest()->get();
-        } else {
+        }else {
             return SuccessStories::where('id', '=', $id)->get();
         }
     }
@@ -84,5 +85,15 @@ if (!function_exists('success')) {
 if (!function_exists('getLatestStory')){
     function getLatestStory(){
         return SuccessStories::latest()->take(1)->get();
+    }
+}
+if (!function_exists('getEvents')){
+    function getEvents($id){
+        if ($id === 'all') {
+            return Event::get();
+        }else {
+            return Event::where('id', '=', $id)->get();
+        }
+
     }
 }

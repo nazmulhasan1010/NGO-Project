@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 @section('title','Photos')
 @section('content')
+    @include('layouts.partials.frontend.pageTitle')
     @php
         $image = getImage();
         $row = count(json_decode($image, true));
@@ -33,13 +34,7 @@
             }
         }
     @endphp
-        <!-- page title -->
-    <div class="row bg-dark-cu page-title">
-        <div class="col-md-12 page-titles">
-            <a href="{{url('/')}}">home</a>
-            <a href="{{url('faq')}}">photos</a>
-        </div>
-    </div> <!-- page title end -->
+
     @if($image)
         <!-- photos -->
         <div class="project_summary bg-dark-cu content-100 shadow-light">
@@ -139,7 +134,7 @@
                         </div>
                     </div>
                 @endif
-                @if($year22==true)
+                @if($year22===true)
                     <div class="col-md-12 sub-container gallery gallery-coll">
                         <div class="heading coll-heading">
                             <div class="left">

@@ -1,16 +1,10 @@
 @extends('layouts.frontend')
 @section('title','Activities')
 @section('content')
+    @include('layouts.partials.frontend.pageTitle')
     @php
         $activities = activities('all');
     @endphp
-    <!-- page title -->
-    <div class="row bg-dark-cu page-title">
-        <div class="col-md-12 page-titles">
-            <a href="{{url('/')}}">home</a>
-            <a href="{{url('faq')}}">Activities</a>
-        </div>
-    </div> <!-- page title end -->
     <!-- project activities -->
     @if($activities)
         <div class="project_summary bg-white-cu content-100">
