@@ -26,7 +26,7 @@ class newsController extends Controller
     {
         try{
             $news = News::latest()->get();
-            return view('backend.library.news',compact('news'));
+            return view('backend.newsBlog.news',compact('news'));
         }
         catch (\Exception $e) {
             Toastr::warning($e->getMessage());

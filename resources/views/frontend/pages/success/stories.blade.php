@@ -7,7 +7,7 @@
     @endphp
 
     <div class="project_summary bg-dark-cu content-100 success">
-        <div class="row content-80 ">
+        <div class="row content-80 border-bottom-">
             <div class="col-md-8 successes">
                 @foreach($stories as $stories_)
                     @if($stories_->status==1)
@@ -44,6 +44,27 @@
                 @include('frontend.pages.component.latestPost')
             </div>
         </div>
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination pagination-lg ">
+                <li class="page-item bg-dark--">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
+
+
 
 @endsection

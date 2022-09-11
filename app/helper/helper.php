@@ -8,7 +8,7 @@ if (!function_exists('anyTypeFileUpload')) {
     function anyTypeFileUpload($inputFile, $folderName): string
     {
         $fileName = date('Ymd') . time() . '.' . $inputFile->extension();
-        $inputFile->move(public_path($folderName), $fileName);
+        $inputFile->move(storage_path('app/public/' . $folderName), $fileName);
         return $fileName;
     }
 }
@@ -18,8 +18,8 @@ if (!function_exists('imageUploadWithCustomSize')) {
     {
 
         // make unique name
-        $currentDate    = Carbon::now()->toDateString();
-        $imageName      = time() . uniqid() . '.' . $fileName->getClientOriginalExtension();
+        $currentDate = Carbon::now()->toDateString();
+        $imageName = time() . '.' . $fileName->getClientOriginalExtension();
 
         if (!Storage::disk('public')->exists($folderName)) {
             Storage::disk('public')->makeDirectory($folderName);

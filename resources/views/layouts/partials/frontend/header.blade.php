@@ -77,22 +77,22 @@
                         <div class="option-head">FAQ</div>
                     </li>
                 </a>
-                <a href="{{url('calender')}}">
-                    <li>
-                        <div class="option-head">Calender</div>
-                    </li>
-                </a>
+{{--                <a href="{{url('calender')}}">--}}
+{{--                    <li>--}}
+{{--                        <div class="option-head">Calender</div>--}}
+{{--                    </li>--}}
+{{--                </a>--}}
                 <a href="{{url('events')}}">
                     <li>
                         <div class="option-head">Events</div>
                     </li>
                 </a>
-                <a href="{{url('news')}}">
+                <a href="{{url('newses')}}">
                     <li>
                         <div class="option-head">News</div>
                     </li>
                 </a>
-                <a href="{{url('topics')}}">
+                <a href="{{url('blogs')}}">
                     <li>
                         <div class="option-head">Blog</div>
                     </li>

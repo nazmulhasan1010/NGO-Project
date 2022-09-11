@@ -15,13 +15,13 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, Welcome back!</h4>
-                        <span>Publication</span>
+                        <span>News</span>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Publication</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">News</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Publication</h4>
+                            <h4 class="card-title">News</h4>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                     data-target="#addNewModal">Add New
                             </button>
@@ -48,7 +48,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($publication as $key=>$item)
+                                    @foreach ($news as $key=>$item)
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->title }}</td>
@@ -76,7 +76,7 @@
                                                            style="color: #fff;font-size: 14px; "></i>
                                                     </a>
                                                     <form id="delete-form-{{$item->id}}"
-                                                          action="{{ route('publication.destroy',$item->id) }}"
+                                                          action="{{ route('news.destroy',$item->id) }}"
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -98,10 +98,10 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('publication.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('news.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add New Publication</h5>
+                                    <h5 class="modal-title">Add New News</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -109,10 +109,22 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="publicationTitle">Publication Title<span class="req">*</span>
+                                                <label for="newsTitle">News Title<span class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="publicationTitle"
-                                                       name="publicationTitle" placeholder="Publication Title">
+                                                <input type="text" class="form-control" id="newsTitle"
+                                                       name="newsTitle" placeholder="News Title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="newsDescription">News Description<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <textarea class="form-control" id="newsDescription"
+                                                          name="newsDescription" placeholder="News Description">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +141,7 @@
                                                     <label for="uploadImage" class="editImageUp btn">Chose a
                                                         image </label>
                                                     <input type="file" class="form-control" id="uploadImage"
-                                                           name="publicationImage" hidden>
+                                                           name="newsImage" hidden>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,11 +161,11 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('publication.update','1')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('news.update','1')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Publication</h5>
+                                    <h5 class="modal-title">Edit News</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -162,16 +174,28 @@
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <input type="text" id="row_id" name="old_id" hidden>
-                                                <label for="editPublicationTitle">Publication Title <span
+                                                <label for="editNewsTitle">News Title <span
                                                         class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="editPublicationTitle"
-                                                       name="editPublicationTitle"
+                                                <input type="text" class="form-control" id="editNewsTitle"
+                                                       name="editNewsTitle"
                                                        value="{{old('title', empty($errors->title) ? '' : $errors->title)}}"
-                                                       placeholder="Publication Title">
+                                                       placeholder="News Title">
                                                 @if ($errors->has('title'))
                                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="editNewsDescription">News Description<span
+                                                        class="req">*</span>
+                                                </label>
+                                                <textarea class="form-control" id="editNewsDescription"
+                                                          name="editNewsDescription" placeholder="News Description">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -209,7 +233,7 @@
                                                     <label for="editImage" class="editImageUp btn">Chose a new
                                                         image </label>
                                                     <input type="file" class="form-control" id="editImage"
-                                                           name="editPublicationImage"
+                                                           name="editNewsImage"
                                                            hidden>
                                                     <input type="hidden" id="old_image" name="old_image">
                                                 </div>
@@ -256,13 +280,14 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('admin/publication') }}/" + row_id + "/edit",
+                url: "{{ url('admin/news') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
                     var r_val = response.row_data;
                     console.log(r_val);
                     $('#row_id').val(r_val.id);
-                    $('#editPublicationTitle').val(r_val.title);
+                    $('#editNewsTitle').val(r_val.title);
+                    $('#editNewsDescription').val(r_val.description);
                     $('#row_status').val(r_val.status);
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
                     $('#restoreImage').attr('data-id', r_val.image);

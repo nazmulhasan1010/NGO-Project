@@ -1,4 +1,4 @@
-/* Javascript plotting library for jQuery, version 0.8.3.
+/* Javascript plotting newsBlog for jQuery, version 0.8.3.
 
 Copyright (c) 2007-2014 IOLA and Ole Laursen.
 Licensed under the MIT license.
@@ -2010,7 +2010,7 @@ Licensed under the MIT license.
                             ctx.lineTo(xrange.to + subPixel, yrange.to);
                         } else {
                             ctx.moveTo(xrange.from, yrange.to + subPixel);
-                            ctx.lineTo(xrange.to, yrange.to + subPixel);                            
+                            ctx.lineTo(xrange.to, yrange.to + subPixel);
                         }
                         ctx.stroke();
                     } else {
@@ -2525,9 +2525,9 @@ Licensed under the MIT license.
                 radius = series.points.radius,
                 symbol = series.points.symbol;
 
-            // If the user sets the line width to 0, we change it to a very 
+            // If the user sets the line width to 0, we change it to a very
             // small value. A line width of 0 seems to force the default of 1.
-            // Doing the conditional here allows the shadow setting to still be 
+            // Doing the conditional here allows the shadow setting to still be
             // optional even with a lineWidth of 0.
 
             if( lw == 0 )

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Report;
+use App\Models\Blog;
 use Brian2694\Toastr\Facades\Toastr;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class reportController extends Controller
+class blogController extends Controller
 {
     public function __construct()
     {
@@ -24,8 +24,8 @@ class reportController extends Controller
     public function index()
     {
         try{
-            $report = Report::latest()->get();
-            return view('backend.library.reports',compact('report'));
+            $blog = Blog::latest()->get();
+            return view('backend.newsBlog.blog',compact('blog'));
         }
         catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -54,19 +54,19 @@ class reportController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'reportTitle' => 'required',
-            'reportImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
+            'blogTitle' => 'required',
+            'blogImage' => 'required|image|mimes:jpeg,jpg,png,gif,svg,webp|max:2048',
         ]);
 
         try {
-            $fileName = imageUploadWithCustomSize($request->reportImage, "1200", "800", "report");
-            $report = new Report();
-            $report->title = $request->reportTitle;
-            $report->description = $request->reportDescription;
-            $report->image = 'report/' . $fileName;
-            $report->save();
+            $fileName = imageUploadWithCustomSize($request->blogImage, "1200", "800", "blog");
+            $blog = new Blog();
+            $blog->title = $request->blogTitle;
+            $blog->description = $request->blogDescription;
+            $blog->image = 'blog/' . $fileName;
+            $blog->save();
 
-            Toastr::success('Report Successfully Added');
+            Toastr::success('Blog Successfully Added');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -78,10 +78,10 @@ class reportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(Blog $blog)
     {
         //
     }
@@ -89,14 +89,14 @@ class reportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
         try {
-            $report = Report::findOrFail($id);
-            return response()->json(['row_data' => $report], 200);
+            $blog = Blog::findOrFail($id);
+            return response()->json(['row_data' => $blog], 200);
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
             return redirect()->back();
@@ -107,7 +107,7 @@ class reportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $cat)
@@ -118,22 +118,22 @@ class reportController extends Controller
 
         try {
             if ($request->old_image === 'change') {
-                $fileName = 'report/' . imageUploadWithCustomSize($request->editReportImage, "1200", "800", "report");
-                Storage::delete('public/' . Report::findOrFail($request->old_id)->image);
+                $fileName = 'blog/' . imageUploadWithCustomSize($request->editReportImage, "1200", "800", "blog");
+                Storage::delete('public/' . Blog::findOrFail($request->old_id)->image);
             } else {
                 $fileName = $request->old_image;
             }
 
-            $report = Report::findOrFail($request->old_id);
+            $blog = Blog::findOrFail($request->old_id);
 
-            $report->title = $request->editReportTitle;
-            $report->description = $request->editReportDescription;
-            $report->image = $fileName;
-            $report->status = $request->row_status;
-            $report->update();
+            $blog->title = $request->editReportTitle;
+            $blog->description = $request->editReportDescription;
+            $blog->image = $fileName;
+            $blog->status = $request->row_status;
+            $blog->update();
 
 
-            Toastr::success('Report Successfully Update');
+            Toastr::success('Blog Successfully Update');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());
@@ -144,15 +144,15 @@ class reportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         try {
-            Storage::delete('public/' . Report::findOrFail($id)->image);
-            Report::Find($id)->delete();
-            Toastr::success('Report Successfully Deleted');
+            Storage::delete('public/' . Blog::findOrFail($id)->image);
+            Blog::Find($id)->delete();
+            Toastr::success('Blog Successfully Deleted');
             return redirect()->back();
         } catch (\Exception $e) {
             Toastr::warning($e->getMessage());

@@ -34,21 +34,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('about.index','inst=values.values')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-tags"></i>
-                            <span class="nav-text">Values</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{route('workingArea.index')}}" class="ai-icon" aria-expanded="false">
                             <i class="fa-solid fa-briefcase"></i>
                             <span class="nav-text">Working area</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('component.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="flaticon-381-settings-2"></i>
-                            <span class="nav-text">Component</span>
                         </a>
                     </li>
                 </ul>
@@ -124,19 +112,13 @@
             </li>
             <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-book-bookmark"></i>
-                    <span class="nav-text">Library</span>
+                    <span class="nav-text">News And Blog</span>
                 </a>
                 <ul aria-expanded="false">
                     <li>
-                        <a href="{{route('publication.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-book"></i>
-                            <span class="nav-text">Publications</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('report.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-flag"></i>
-                            <span class="nav-text">Report</span>
+                        <a href="{{route('blog.index')}}" class="ai-icon" aria-expanded="false">
+                            <i class="fa-brands fa-blogger-b"></i>
+                            <span class="nav-text">Blog</span>
                         </a>
                     </li>
                     <li>
@@ -147,43 +129,43 @@
                     </li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" aria-expanded="false">
-                    <i class="fa-solid fa-burger"></i>
-                    <span class="nav-text">About Food</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li>
-                        <a href="{{route('foods.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-utensils"></i>
-                            <span class="nav-text">Foods Ans Recipes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('foodValue.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-bowl-food"></i>
-                            <span class="nav-text">Food Value</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('foodDemand.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
-                            <span class="nav-text">Demand</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('product.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-brands fa-product-hunt"></i>
-                            <span class="nav-text">Products</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('recipe.index')}}" class="ai-icon" aria-expanded="false">
-                            <i class="fa-solid fa-plate-wheat"></i>
-                            <span class="nav-text">Recipe</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            {{--            <li><a class="has-arrow ai-icon" aria-expanded="false">--}}
+            {{--                    <i class="fa-solid fa-burger"></i>--}}
+            {{--                    <span class="nav-text">About Food</span>--}}
+            {{--                </a>--}}
+            {{--                <ul aria-expanded="false">--}}
+            {{--                    <li>--}}
+            {{--                        <a href="{{route('foods.index')}}" class="ai-icon" aria-expanded="false">--}}
+            {{--                            <i class="fa-solid fa-utensils"></i>--}}
+            {{--                            <span class="nav-text">Foods Ans Recipes</span>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                    <li>--}}
+            {{--                        <a href="{{route('foodValue.index')}}" class="ai-icon" aria-expanded="false">--}}
+            {{--                            <i class="fa-solid fa-bowl-food"></i>--}}
+            {{--                            <span class="nav-text">Food Value</span>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                    <li>--}}
+            {{--                        <a href="{{route('foodDemand.index')}}" class="ai-icon" aria-expanded="false">--}}
+            {{--                            <i class="fa-solid fa-hand-holding-dollar"></i>--}}
+            {{--                            <span class="nav-text">Demand</span>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                    <li>--}}
+            {{--                        <a href="{{route('product.index')}}" class="ai-icon" aria-expanded="false">--}}
+            {{--                            <i class="fa-brands fa-product-hunt"></i>--}}
+            {{--                            <span class="nav-text">Products</span>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                    <li>--}}
+            {{--                        <a href="{{route('recipe.index')}}" class="ai-icon" aria-expanded="false">--}}
+            {{--                            <i class="fa-solid fa-plate-wheat"></i>--}}
+            {{--                            <span class="nav-text">Recipe</span>--}}
+            {{--                        </a>--}}
+            {{--                    </li>--}}
+            {{--                </ul>--}}
+            {{--            </li>--}}
 
             <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-tower-cell"></i>
@@ -209,6 +191,14 @@
             <li><a class="has-arrow ai-icon">
                     <span class="nav-text">Web Site</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li>
+                        <a href="{{route('logo.index')}}" class="ai-icon" aria-expanded="false">
+                            <i class="fa-brands fa-square-pied-piper"></i>
+                            <span class="nav-text">Website Logo</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

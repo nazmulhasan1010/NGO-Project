@@ -4,55 +4,66 @@
     @include('layouts.partials.frontend.pageTitle')
     <!-- event & notice -->
     <div class="project_summary bg-white-cu content-100">
-        <div class="row content-80 event-notices event-show">
+        <div class="row content-80 event-notices event-show border-bottom-">
             @php
-                $event = getEvents('all');
+                $notice = getNotices('all');
             @endphp
-            @if($event)
-                <div class="col-md-12 sub-container event-notice ">
+            @if($notice)
+                <div class="col-md-6 sub-container event-notice ">
                     <div class="heading">
-                        <span class="heading-1">Upcoming</span>
-                        <span class="heading-2">Events</span>
+                        <span class="heading-1">Notice</span>
                     </div>
-                    @foreach($event as $events)
-                        @if($events->status===1)
-
-                            <div class="row event">
-                                <div class="col-md-4 events">
-                                    <img src="{{asset('storage/' .$events->image)}}" alt="">
+                    @foreach($notice as $notices)
+                        @if($notices->status===1)
+                            <div class="row notice">
+                                <div class="col-md-2 notices">
+                                    <div class="date">
+                                        {{date('d',strtotime($notices->dateAt)).' '.substr(date('F',strtotime($notices->dateAt)),0,3).' '.date('Y',strtotime($notices->dateAt))}}
+                                    </div>
                                 </div>
-                                <div class="col-md-8 events ">
+                                <a href="{{url('notice/'.$notices->id)}}" class="col-md-10 notices">
                                     @php
-                                        if (strlen($events->title)>35){
-                                           $title = substr($events->title,0,34);
+                                        if (strlen($notices->title)>40){
+                                           $title = substr($notices->title,0,39).'...';
                                         }else{
-                                            $title = $events->title ;
+                                            $title = $notices->title ;
                                         }
                                     @endphp
-                                    <h4>{{$title}}</h4>
-                                    <div class="event-date-place">
-                                        <span>{{date("d", strtotime($events->start)).' '.substr(date("F", strtotime($events->start)),0,3).' '.date("Y", strtotime($events->start)) .' - ' .date("d", strtotime($events->end)).' '.substr(date("F", strtotime($events->end)),0,3).' ' .date("Y", strtotime($events->end))}}</span>
-                                        <span>{{$events->place}}</span>
-                                    </div>
+                                    <h3>{{$title}}</h3>
                                     @php
-                                        if (strlen($events->description)>600){
-                                           $des = substr($events->description,0,600).'...';
+                                        if (strlen($notices->description)>300){
+                                           $des = substr($notices->description,0,299).'...';
                                         }else{
-                                            $des = $events->description ;
+                                            $des = $notices->description ;
                                         }
                                     @endphp
                                     <p>{{$des}}</p>
-                                    <a href="{{url('event/'.$events->id)}}">
-                                        <button type="button" class="more-button">Learn more</button>
-                                    </a>
-                                </div>
+                                </a>
                             </div>
-
                         @endif
                     @endforeach
                 </div>
             @endif
         </div>
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination pagination-lg ">
+                <li class="page-item bg-dark--">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
 @endsection

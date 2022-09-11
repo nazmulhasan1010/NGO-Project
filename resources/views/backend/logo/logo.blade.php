@@ -15,13 +15,13 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, Welcome back!</h4>
-                        <span>Reports</span>
+                        <span>LOGO</span>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Reports</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">LOGO</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Reports</h4>
+                            <h4 class="card-title">LOGO</h4>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                     data-target="#addNewModal">Add New
                             </button>
@@ -41,19 +41,17 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Image</th>
-                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>Logo</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($report as $key=>$item)
+                                    @foreach ($logo as $key=>$item)
                                         <tr>
                                             <td>{{ $key+1}}</td>
-                                            <td>{{ $item->title }}</td>
-                                            <td>{{ $item->description }}</td>
+                                            <td>{{ $item->logo_status }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/' . $item->image) }}"
                                                      width="100px"
@@ -78,7 +76,7 @@
                                                            style="color: #fff;font-size: 14px; "></i>
                                                     </a>
                                                     <form id="delete-form-{{$item->id}}"
-                                                          action="{{ route('report.destroy',$item->id) }}"
+                                                          action="{{ route('logo.destroy',$item->id) }}"
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -100,36 +98,14 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('report.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('logo.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add New Report</h5>
+                                    <h5 class="modal-title">Add New Logo</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="reportTitle">Report Title<span class="req">*</span>
-                                                </label>
-                                                <input type="text" class="form-control" id="reportTitle"
-                                                       name="reportTitle" placeholder="Report Title">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="reportDescription">Report Description<span
-                                                        class="req">*</span>
-                                                </label>
-                                                <textarea class="form-control" id="reportDescription"
-                                                          name="reportDescription" placeholder="Report Description">
-                                                </textarea>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="preview-img">
                                             <img src="{{asset('assets/backend/images/avatar/upload.png')}}"
@@ -143,12 +119,30 @@
                                                     <label for="uploadImage" class="editImageUp btn">Chose a
                                                         image </label>
                                                     <input type="file" class="form-control" id="uploadImage"
-                                                           name="reportImage" hidden>
+                                                           name="logoImage" hidden>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="row_status" class="col-form-label">Status <span
+                                                        class="red">*</span></label>
+                                                <select name="logo_status" id="row_status" class="form-control"
+                                                        required>
+                                                    <option value="primary">
+                                                        Primary Logo
+                                                    </option>
+                                                    <option value="secondary">
+                                                        Secondary Logo
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
                                     </button>
@@ -163,41 +157,52 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('report.update','1')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('logo.update','1')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit Report</h5>
+                                    <h5 class="modal-title">Edit Album</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
+                                <input type="hidden" name="old_id" id="row_id" >
                                 <div class="modal-body">
+                                    <div class="row">
+                                        <div class="preview-img">
+                                            <img src="" id="imagePreView"
+                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <input type="text" id="row_id" name="old_id" hidden>
-                                                <label for="editReportTitle">Report Title <span
-                                                        class="req">*</span>
-                                                </label>
-                                                <input type="text" class="form-control" id="editReportTitle"
-                                                       name="editReportTitle"
-                                                       value="{{old('title', empty($errors->title) ? '' : $errors->title)}}"
-                                                       placeholder="Report Title">
-                                                @if ($errors->has('title'))
-                                                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                                                @endif
+                                                <div class="choseEditImage">
+                                                    <button type="button" class="edit-image" id="restoreImage">Restore
+                                                    </button>
+                                                    <label for="editImage" class="editImageUp btn">Chose a new
+                                                        image </label>
+                                                    <input type="file" class="form-control" id="editImage"
+                                                           name="editLogo"
+                                                           hidden>
+                                                    <input type="hidden" id="old_image" name="old_image">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="editReportDescription">Report Description<span
-                                                        class="req">*</span>
-                                                </label>
-                                                <textarea class="form-control" id="editReportDescription"
-                                                          name="editReportDescription" placeholder="Report Description">
-                                                </textarea>
+                                                <label for="row_status" class="col-form-label">Status <span
+                                                        class="red">*</span></label>
+                                                <select name="logo_status" id="edit_logo_status" class="form-control"
+                                                        required>
+                                                    <option value="primary"{{old('logo_status')==='primary' ? 'selected' : ''}}>
+                                                        Primary Logo
+                                                    </option>
+                                                    <option value="secondary" {{old('logo_status')==='secondary'? 'selected' : ''}}>
+                                                        Secondary Logo
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -220,28 +225,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="preview-img">
-                                            <img src="" id="imagePreView"
-                                                 class="imagePreView imagePreViewEdit imagePreViewModal">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="choseEditImage">
-                                                    <button type="button" class="edit-image" id="restoreImage">Restore
-                                                    </button>
-                                                    <label for="editImage" class="editImageUp btn">Chose a new
-                                                        image </label>
-                                                    <input type="file" class="form-control" id="editImage"
-                                                           name="editReportImage"
-                                                           hidden>
-                                                    <input type="hidden" id="old_image" name="old_image">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
@@ -282,17 +265,16 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('admin/report') }}/" + row_id + "/edit",
+                url: "{{ url('admin/logo') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
                     var r_val = response.row_data;
                     console.log(r_val);
                     $('#row_id').val(r_val.id);
-                    $('#editReportTitle').val(r_val.title);
-                    $('#editReportDescription').val(r_val.description);
                     $('#row_status').val(r_val.status);
+                    $('#edit_logo_status').val(r_val.logo_status);
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
-                    $('#restoreImage').attr('data-id', r_val.image);
+                    $('#restoreLogo').attr('data-id', r_val.image);
                     $('#old_image').val(r_val.image);
                 },
                 error: function (response) {

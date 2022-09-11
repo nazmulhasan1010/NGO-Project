@@ -3,7 +3,9 @@
 use App\Http\Controllers\Backend\aboutController;
 use App\Http\Controllers\Backend\activityController;
 use App\Http\Controllers\Backend\beneficiaryLocationsController;
+use App\Http\Controllers\Backend\blogController;
 use App\Http\Controllers\Backend\contactController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\developmentComponentController;
 use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\faqController;
@@ -12,24 +14,23 @@ use App\Http\Controllers\Backend\foodsController;
 use App\Http\Controllers\Backend\foodValueController;
 use App\Http\Controllers\Backend\imageGalleryController;
 use App\Http\Controllers\Backend\linksController;
+use App\Http\Controllers\Backend\logoController;
 use App\Http\Controllers\Backend\newsController;
 use App\Http\Controllers\Backend\noticeController;
 use App\Http\Controllers\Backend\partnerController;
 use App\Http\Controllers\Backend\productController;
 use App\Http\Controllers\Backend\publicationController;
 use App\Http\Controllers\Backend\recipeController;
-use App\Http\Controllers\Backend\reportController;
 use App\Http\Controllers\Backend\sliderController;
 use App\Http\Controllers\Backend\successStoriesController;
+use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
-use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\frontend\frontHomeController;
 use App\Http\Controllers\frontend\pageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\UsersController;
 
 //frontend
 Route::get('/', [frontHomeController::class, 'index']);
@@ -45,8 +46,10 @@ Route::get('success', [pageController::class, 'success']);
 Route::get('calender', [pageController::class, 'calender']);
 Route::get('events', [pageController::class, 'events']);
 Route::get('event/{id}', [pageController::class, 'event']);
-Route::get('news', [pageController::class, 'news']);
-Route::get('topics', [pageController::class, 'topics']);
+Route::get('newses', [pageController::class, 'news']);
+Route::get('news/{id}', [pageController::class, 'newsMore']);
+Route::get('blogs', [pageController::class, 'blogs']);
+Route::get('blog/{id}', [pageController::class, 'blog']);
 Route::get('notice/{id}', [pageController::class, 'notice']);
 Route::get('notices', [pageController::class, 'notices']);
 Route::get('activities', [pageController::class, 'activities']);
@@ -78,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('imageGallery', imageGalleryController::class);
     Route::resource('videoGallery', videoGalleryController::class);
     Route::resource('product', productController::class);
-    Route::resource('report', reportController::class);
+    Route::resource('blog', blogController::class);
     Route::resource('publication', publicationController::class);
     Route::resource('news', newsController::class);
     Route::resource('event', eventController::class);
@@ -94,6 +97,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('links', linksController::class);
     Route::resource('partner', partnerController::class);
     Route::resource('faq', faqController::class);
+    Route::resource('logo', logoController::class);
 });
 
 

@@ -34,6 +34,16 @@ p {
 
 .bg-white-cu {
     background-color: $bgWhite-70;
+
+    .border-bottom- {
+        border-bottom: 2px solid $textColor-50;
+        margin-bottom: 20px;
+
+        .border-top-_ {
+            border-top: 2px solid $textColor-50;
+            margin-bottom: 20px;
+        }
+    }
 }
 
 
@@ -100,6 +110,16 @@ p {
         .heading-1 {
             color: $bgWhite-70;
         }
+    }
+
+    .border-bottom- {
+        border-bottom: 2px solid $bgWhite-50;
+        margin-bottom: 20px;
+    }
+
+    .border-top-_ {
+        border-top: 2px solid $textColor-50;
+        margin-bottom: 20px;
     }
 }
 
@@ -699,6 +719,14 @@ a {
         .more-link {
             width: 100%
         }
+
+        .notice-show {
+             margin: 5px 0;
+            width: 100%;
+             &:hover {
+                 background-color: $bgWhite;
+             }
+        }
     }
 }
 
@@ -1297,3 +1325,12 @@ a {
 }
 
 //success stories end --------------------------
+.content-100 {
+    .page-item {
+        .page-link {
+            color: $blue-gray;
+            background-color: $bgWhite-50;
+        }
+
+    }
+}

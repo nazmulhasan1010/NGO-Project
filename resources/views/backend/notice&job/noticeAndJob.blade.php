@@ -127,11 +127,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="noticeDescription">Notice Attachment
+                                                </label>
+                                                <input type="file" class="form-control" id="noticeAttachment"
+                                                       name="noticeAttachment" placeholder="">
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
                                 </div>
                             </form>
                         </div>
@@ -197,6 +208,17 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <input type="hidden" id="old_file" name="old_file">
+                                                <label for="fileEdit">Notice Attachment
+                                                </label>
+                                                <input type="file" class="form-control" id="fileEdit"
+                                                       name="editNoticeAttachment" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light" data-dismiss="modal">Close
@@ -250,6 +272,7 @@
                     $('#row_id').val(r_val.id);
                     $('#editNoticeTitle').val(r_val.title);
                     $('#editNoticeDescription').val(r_val.description);
+                    $('#old_file').val(r_val.attachment);
                     $('#row_status').val(r_val.status);
                 },
                 error: function (response) {

@@ -2110,7 +2110,7 @@ function (_Emitter) {
 
       fileReader.readAsDataURL(file);
     } // `mockFile` needs to have these attributes:
-    // 
+    //
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.
@@ -2681,7 +2681,7 @@ function (_Emitter) {
     value: function _transformFiles(files, done) {
       var _this17 = this;
 
-      var transformedFiles = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future library.
+      var transformedFiles = []; // Clumsy way of handling asynchronous calls, until I get to add a proper Future newsBlog.
 
       var doneCounter = 0;
 

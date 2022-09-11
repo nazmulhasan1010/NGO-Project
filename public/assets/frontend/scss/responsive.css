@@ -198,6 +198,12 @@
       margin: 10px; }
     .event-notices .event-notice .notice:hover {
       background-color: #cbe4f0; }
+    .event-notices .event-notice .notice-show .notices:nth-child(1) {
+      border: none; }
+    .event-notices .event-notice .notice-show .notices:nth-child(2) {
+      border: 2px solid none; }
+    .event-notices .event-notice .notice-show .notices .date {
+      border-radius: 4px; }
     .event-notices .event-notice .more-link {
       width: 100%; }
 

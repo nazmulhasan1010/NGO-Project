@@ -12,6 +12,9 @@ use App\Models\Activity;
 use App\Models\FAQ;
 use App\Models\SuccessStories;
 use App\Models\Event;
+use App\Models\News;
+use App\Models\Blog;
+use App\Models\Notice;
 
 if (!function_exists('getCommunication')) {
     function getCommunication(): array
@@ -77,23 +80,63 @@ if (!function_exists('success')) {
     {
         if ($id === 'all') {
             return SuccessStories::latest()->get();
-        }else {
+        } else {
             return SuccessStories::where('id', '=', $id)->get();
         }
     }
 }
-if (!function_exists('getLatestStory')){
-    function getLatestStory(){
-        return SuccessStories::latest()->take(1)->get();
+if (!function_exists('getLatest')) {
+    function getLatest()
+    {
+        $success = SuccessStories::latest()->take(3)->get();
+        $blog = Blog::latest()->take(3)->get();
+        $news = News::latest()->take(3)->get();
+        return [
+            'story'=>$success,
+            'blog'=>$blog,
+            'news'=>$news
+        ];
     }
 }
-if (!function_exists('getEvents')){
-    function getEvents($id){
+if (!function_exists('getEvents')) {
+    function getEvents($id)
+    {
         if ($id === 'all') {
             return Event::get();
-        }else {
+        } else {
             return Event::where('id', '=', $id)->get();
         }
 
+    }
+}
+if (!function_exists('getNews')) {
+    function getNews($id)
+    {
+        if ($id === 'all') {
+            return News::get();
+        } else {
+            return News::where('id', '=', $id)->get();
+        }
+
+    }
+}
+if (!function_exists('getBlogs')) {
+    function getBlogs($id)
+    {
+        if ($id === 'all') {
+            return Blog::get();
+        } else {
+            return Blog::where('id', '=', $id)->get();
+        }
+
+    }
+}
+if(!function_exists('getNotices')){
+    function getNotices($id){
+        if ($id === 'all') {
+            return Notice::get();
+        } else {
+            return Notice::where('id', '=', $id)->get();
+        }
     }
 }

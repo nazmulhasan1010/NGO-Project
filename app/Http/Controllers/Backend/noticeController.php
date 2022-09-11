@@ -9,6 +9,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use DateTimeZone;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class noticeController extends Controller
 {
@@ -31,8 +32,6 @@ class noticeController extends Controller
             Toastr::warning($e->getMessage());
             return redirect()->back();
         }
-
-
     }
 
     /**
@@ -56,13 +55,20 @@ class noticeController extends Controller
         $this->validate($request, [
             'noticeTitle' => 'required',
             'noticeDescription' => 'required',
+            'noticeAttachment' => 'required|mimes:pdf,jpeg,jpg,png,gif,svg,webp|max:5048',
         ]);
+        if ($request->noticeAttachment->extension() === 'pdf') {
+            $file = anyTypeFileUpload($request->noticeAttachment, 'notice');
+        } else {
+            $file = imageUploadWithCustomSize($request->noticeAttachment, "1200", "800", "notice");
+        }
         date_default_timezone_set('Asia/Dhaka');
         $date = date('Y-m-d');
         try {
             $notice = new Notice();
             $notice->title = $request->noticeTitle;
             $notice->description = $request->noticeDescription;
+            $notice->attachment = $file;
             $notice->dateAt = date('d F Y ', strtotime($date));
             $notice->save();
 
@@ -114,15 +120,28 @@ class noticeController extends Controller
     {
         $this->validate($request, [
             'old_id' => 'required',
+            'editNoticeAttachment' => 'mimes:pdf,jpeg,jpg,png,gif,svg,webp|max:5048',
         ]);
+//        return $request->all();
         date_default_timezone_set('Asia/Dhaka');
         $date = date('Y-m-d');
         try {
+            if ($request->old_file==='change'){
+                Storage::delete('public/' . Notice::findOrFail($request->old_id)->attachment);
+                if ($request->editNoticeAttachment->extension() === 'pdf') {
+                    $file = anyTypeFileUpload($request->editNoticeAttachment, 'notice');
+                } else {
+                    $file = imageUploadWithCustomSize($request->editNoticeAttachment, "1200", "800", "notice");
+                }
+            }else{
+                $file = $request->old_file;
+            }
             $notice = Notice::findOrFail($request->old_id);
 
             $notice->title = $request->editNoticeTitle;
             $notice->description = $request->editNoticeDescription;
             $notice->dateAt = date('d F Y ', strtotime($date));
+            $notice->attachment = $file;
             $notice->status = $request->row_status;
             $notice->update();
 
@@ -143,6 +162,7 @@ class noticeController extends Controller
     public function destroy($id)
     {
         try {
+            Storage::delete('public/' . Notice::findOrFail($id)->attachment);
             Notice::Find($id)->delete();
             Toastr::success('Notice Successfully Deleted');
             return redirect()->back();

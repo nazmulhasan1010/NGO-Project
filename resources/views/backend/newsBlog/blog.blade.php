@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','Component')
+@section('title','Blog')
 
 @push('vendor-css')
     <!-- Datatable -->
@@ -15,13 +15,13 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Hi, Welcome back!</h4>
-                        <span>News</span>
+                        <span>Blog</span>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard')}}">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">News</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Blog</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">News</h4>
+                            <h4 class="card-title">Blog</h4>
                             <button type="button" class="btn btn-primary mb-2" data-toggle="modal"
                                     data-target="#addNewModal">Add New
                             </button>
@@ -43,17 +43,15 @@
                                         <th>#</th>
                                         <th>Title</th>
                                         <th>Image</th>
-                                        <th>Description</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($news as $key=>$item)
+                                    @foreach ($blog as $key=>$item)
                                         <tr>
                                             <td>{{ $key+1}}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td>{{ $item->description }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/' . $item->image) }}"
                                                      width="100px"
@@ -78,7 +76,7 @@
                                                            style="color: #fff;font-size: 14px; "></i>
                                                     </a>
                                                     <form id="delete-form-{{$item->id}}"
-                                                          action="{{ route('news.destroy',$item->id) }}"
+                                                          action="{{ route('blog.destroy',$item->id) }}"
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -100,10 +98,10 @@
                 <div class="modal fade" id="addNewModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('news.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('blog.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Add New News</h5>
+                                    <h5 class="modal-title">Add New Blog</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -111,21 +109,21 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="newsTitle">News Title<span class="req">*</span>
+                                                <label for="blogTitle">Blog Title<span class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="newsTitle"
-                                                       name="newsTitle" placeholder="News Title">
+                                                <input type="text" class="form-control" id="blogTitle"
+                                                       name="blogTitle" placeholder="Blog Title">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="newsDescription">News Description<span
+                                                <label for="blogDescription">Blog Description<span
                                                         class="req">*</span>
                                                 </label>
-                                                <textarea class="form-control" id="newsDescription"
-                                                          name="newsDescription" placeholder="News Description">
+                                                <textarea class="form-control" id="blogDescription"
+                                                          name="blogDescription" placeholder="Blog Description">
                                                 </textarea>
                                             </div>
                                         </div>
@@ -143,7 +141,7 @@
                                                     <label for="uploadImage" class="editImageUp btn">Chose a
                                                         image </label>
                                                     <input type="file" class="form-control" id="uploadImage"
-                                                           name="newsImage" hidden>
+                                                           name="blogImage" hidden>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,11 +161,11 @@
                 <div class="modal fade" id="editModal">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('news.update','1')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('blog.update','1')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method("PUT")
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit News</h5>
+                                    <h5 class="modal-title">Edit Blog</h5>
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
@@ -176,13 +174,13 @@
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <input type="text" id="row_id" name="old_id" hidden>
-                                                <label for="editNewsTitle">News Title <span
+                                                <label for="editBlogTitle">Blog Title <span
                                                         class="req">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" id="editNewsTitle"
-                                                       name="editNewsTitle"
-                                                       value="{{old('title', empty($errors->title) ? '' : $errors->title)}}"
-                                                       placeholder="News Title">
+                                                <input type="text" class="form-control" id="editBlogTitle"
+                                                       name="editBlogTitle"
+                                                       value=""
+                                                       placeholder="Blog Title">
                                                 @if ($errors->has('title'))
                                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                                 @endif
@@ -192,11 +190,11 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="editNewsDescription">News Description<span
+                                                <label for="editBlogDescription">Blog Description<span
                                                         class="req">*</span>
                                                 </label>
-                                                <textarea class="form-control" id="editNewsDescription"
-                                                          name="editNewsDescription" placeholder="News Description">
+                                                <textarea class="form-control" id="editBlogDescription"
+                                                          name="editBlogDescription" placeholder="Blog Description">
                                                 </textarea>
                                             </div>
                                         </div>
@@ -235,7 +233,7 @@
                                                     <label for="editImage" class="editImageUp btn">Chose a new
                                                         image </label>
                                                     <input type="file" class="form-control" id="editImage"
-                                                           name="editNewsImage"
+                                                           name="editBlogImage"
                                                            hidden>
                                                     <input type="hidden" id="old_image" name="old_image">
                                                 </div>
@@ -282,14 +280,14 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('admin/news') }}/" + row_id + "/edit",
+                url: "{{ url('admin/blog') }}/" + row_id + "/edit",
                 dataType: "json",
                 success: function (response) {
                     var r_val = response.row_data;
                     console.log(r_val);
                     $('#row_id').val(r_val.id);
-                    $('#editNewsTitle').val(r_val.title);
-                    $('#editNewsDescription').val(r_val.description);
+                    $('#editBlogTitle').val(r_val.title);
+                    $('#editBlogDescription').val(r_val.description);
                     $('#row_status').val(r_val.status);
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
                     $('#restoreImage').attr('data-id', r_val.image);

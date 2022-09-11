@@ -63,7 +63,7 @@
                                     {{date('d',strtotime($notices->dateAt)).' '.substr(date('F',strtotime($notices->dateAt)),0,3).' '.date('Y',strtotime($notices->dateAt))}}
                                 </div>
                             </div>
-                            <a href="#" class="col-md-10 notices">
+                            <a href="{{url('notice/'.$notices->id)}}" class="col-md-10 notices">
                                 @php
                                     if (strlen($notices->title)>40){
                                        $title = substr($notices->title,0,39).'...';
@@ -84,7 +84,7 @@
                         </div>
                     @endif
                 @endforeach
-                <a href="#" class="more-link">
+                <a href="{{url('notices')}}" class="more-link">
                     <button type="button" class="more-button see-all">See All <i
                             class="fa-solid fa-angles-right"></i></button>
                 </a>

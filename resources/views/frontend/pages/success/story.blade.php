@@ -6,7 +6,7 @@
         <div class="row content-80 success">
             <div class="col-md-8 successes">
                 @foreach($story as $stories_)
-                    @if($stories_->status==1)
+                    @if($stories_->status===1)
                         <img src="{{asset('storage/'.$stories_->image)}}" alt="">
                         <div class="info-field">
                             <div class="date">

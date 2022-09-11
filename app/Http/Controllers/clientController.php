@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Message;
+use Illuminate\Http\Request;
+
+class clientController extends Controller
+{
+    public function message(Request $request)
+    {
+        $this->validate($request, [
+            'clientName' => 'required',
+            'clientMail' => 'required',
+        ]);
+        try {
+            $message = new Message();
+            $message->name = $request->clientName;
+            $message->email = $request->clientMail;
+            $message->message = $request->clientMessage;
+            $message->save();
+            return redirect()->back();
+        } catch (\Exception $e) {
+
+        }
+
+    }
+}
