@@ -162,11 +162,8 @@
                                                         class="req">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" id="editAlbumTitle" name="editAlbumTitle"
-                                                          value="{{old('title', empty($errors->title) ? '' : $errors->title)}}"
+                                                          value=""
                                                           placeholder="Album Title">
-                                                @if ($errors->has('title'))
-                                                    <span class="text-danger">{{ $errors->first('title') }}</span>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -175,10 +172,10 @@
                                             <div class="form-group">
                                                 <label for="row_status" class="col-form-label">Status <span class="red">*</span></label>
                                                 <select name="row_status" id="row_status" class="form-control" required>
-                                                    <option value="1" {{old('status')==1 ? 'selected' : ''}}>
+                                                    <option value="1" {{old('status')===1 ? 'selected' : ''}}>
                                                         Active
                                                     </option>
-                                                    <option value="0" {{old('status')==0 ? 'selected' : ''}}>
+                                                    <option value="0" {{old('status')===0 ? 'selected' : ''}}>
                                                         Inactive
                                                     </option>
                                                 </select>

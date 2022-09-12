@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title','Component')
+@section('title','Logo')
 
 @push('vendor-css')
     <!-- Datatable -->
@@ -127,17 +127,12 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="row_status" class="col-form-label">Status <span
-                                                        class="red">*</span></label>
-                                                <select name="logo_status" id="row_status" class="form-control"
-                                                        required>
-                                                    <option value="primary">
-                                                        Primary Logo
-                                                    </option>
-                                                    <option value="secondary">
-                                                        Secondary Logo
-                                                    </option>
-                                                </select>
+                                                <p>Select logo type</p>
+                                                <input type="radio"  id="Primary" name="logoStatus" value="primary">
+                                                <label for="Primary" class="col-form-label">Primary</label><br>
+
+                                                <input type="radio"  id="Secondary" name="logoStatus" value="secondary">
+                                                <label for="Secondary" class="col-form-label">Secondary</label><br>
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +160,7 @@
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                     </button>
                                 </div>
-                                <input type="hidden" name="old_id" id="row_id" >
+                                <input type="hidden" name="old_id" id="row_id">
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="preview-img">
@@ -177,8 +172,7 @@
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <div class="choseEditImage">
-                                                    <button type="button" class="edit-image" id="restoreImage">Restore
-                                                    </button>
+
                                                     <label for="editImage" class="editImageUp btn">Chose a new
                                                         image </label>
                                                     <input type="file" class="form-control" id="editImage"
@@ -189,20 +183,16 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="row_status" class="col-form-label">Status <span
-                                                        class="red">*</span></label>
-                                                <select name="logo_status" id="edit_logo_status" class="form-control"
-                                                        required>
-                                                    <option value="primary"{{old('logo_status')==='primary' ? 'selected' : ''}}>
-                                                        Primary Logo
-                                                    </option>
-                                                    <option value="secondary" {{old('logo_status')==='secondary'? 'selected' : ''}}>
-                                                        Secondary Logo
-                                                    </option>
-                                                </select>
+                                                <p>Select logo type</p>
+                                                <input type="radio"  id="editPrimary" name="editLogoStatus" value="primary">
+                                                <label for="editPrimary" class="col-form-label">Primary</label><br>
+
+                                                <input type="radio"  id="editSecondary" name="editLogoStatus" value="secondary">
+                                                <label for="editSecondary" class="col-form-label">Secondary</label><br>
                                             </div>
                                         </div>
                                     </div>
@@ -211,11 +201,11 @@
                                             <div class="form-group">
                                                 <label for="row_status" class="col-form-label">Status <span class="red">*</span></label>
                                                 <select name="row_status" id="row_status" class="form-control" required>
-                                                    <option value="1" {{old('status')==1 ? 'selected' : ''}}>
+                                                    <option value="1" {{old('status')===1 ? 'selected' : ''}}>
                                                         Active
                                                     </option>
-                                                    <option value="0" {{old('status')==0 ? 'selected' : ''}}>
-                                                        Inactive
+                                                    <option value="0" {{old('status')===0 ? 'selected' : ''}}>
+                                                        Inactive {{old('status')}}
                                                     </option>
                                                 </select>
                                                 @if ($errors->has('status'))
@@ -272,7 +262,12 @@
                     console.log(r_val);
                     $('#row_id').val(r_val.id);
                     $('#row_status').val(r_val.status);
-                    $('#edit_logo_status').val(r_val.logo_status);
+                    if (r_val.logo_status === 'primary') {
+                        $('#editPrimary').attr("checked", true);
+                    } else if (r_val.logo_status === 'secondary') {
+                        $('#editSecondary').attr("checked", true);
+                    }
+
                     $('.imagePreViewEdit').attr('src', window.location.origin + "/storage/" + r_val.image);
                     $('#restoreLogo').attr('data-id', r_val.image);
                     $('#old_image').val(r_val.image);

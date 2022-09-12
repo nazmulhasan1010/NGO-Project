@@ -77,7 +77,7 @@ class pageController extends Controller
 
     public function newsMore($id)
     {
-        $news = getNews($id);
+        $news = getNews($id,'','one');
         return view('frontend.pages.news.newsMore', ['news' => $news]);
     }
 
@@ -104,7 +104,7 @@ class pageController extends Controller
 
     public function story($id)
     {
-        $story = success($id);
+        $story = success($id,'','one');
         return view('frontend.pages.success.story', ['story' => $story]);
     }
 
@@ -115,7 +115,7 @@ class pageController extends Controller
 
     public function blog($id)
     {
-        $blog = getBlogs($id);
+        $blog = getBlogs($id,'','one');
         return view('frontend.pages.blogs.blog', ['blog' => $blog]);
     }
 

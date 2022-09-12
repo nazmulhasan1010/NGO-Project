@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class clientController extends Controller
 {
@@ -24,5 +25,9 @@ class clientController extends Controller
 
         }
 
+    }
+    public function download($path): \Symfony\Component\HttpFoundation\StreamedResponse
+    {
+        return Storage::download('public/notice/'.$path);
     }
 }

@@ -3,6 +3,7 @@
 @section('content')
     @include('layouts.partials.frontend.pageTitle')
     <div class="project_summary bg-dark-cu content-100">
+        @include('frontend.pages.component.themeChanger')
         <div class="row content-80 success border-bottom-">
             <div class="col-md-8 successes">
                 @foreach($blog as $blog_)

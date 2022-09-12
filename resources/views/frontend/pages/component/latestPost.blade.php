@@ -1,9 +1,11 @@
 @php
     $uri = explode('/',$_SERVER['REQUEST_URI']);
+    $uri_ = explode('?',$_SERVER['REQUEST_URI']);
     $count = count($uri);
-
+    $count_ = count($uri_);
+//    print_r($uri_);
 @endphp
-@if($uri[$count-1]==='blogs'||$uri[$count-2]==='blog')
+@if($uri[$count-1]==='blogs'||$uri[$count-2]==='blog'||$uri_[0]==='/blogs')
     @foreach(getLatest()['blog'] as $latestStory)
         @if($latestStory->status === 1)
             <a href="{{url('blog/'.$latestStory->id)}}" class="row latest-post-links">
@@ -36,7 +38,7 @@
         @endif
     @endforeach
 @endif
-@if($uri[$count-1]==='newses'||$uri[$count-2]==='news')
+@if($uri[$count-1]==='newses'||$uri[$count-2]==='news'|| $uri_[0]==='/newses')
     @foreach(getLatest()['news'] as $latestStory)
         @if($latestStory->status === 1)
             <a href="{{url('news/'.$latestStory->id)}}" class="row latest-post-links">
@@ -70,7 +72,7 @@
     @endforeach
 
 @endif
-@if($uri[$count-1]==='stories'||$uri[$count-2]==='story')
+@if($uri[$count-1]==='stories'||$uri[$count-2]==='story'||$uri_[0]==='/stories')
     @foreach(getLatest()['story'] as $latestStory)
         @if($latestStory->status === 1)
             <a href="{{url('story/'.$latestStory->id)}}" class="row latest-post-links">

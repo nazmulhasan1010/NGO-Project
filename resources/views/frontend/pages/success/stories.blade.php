@@ -3,14 +3,25 @@
 @section('content')
     @include('layouts.partials.frontend.pageTitle')
     @php
-        $stories = success('all');
+         $start = 0;
+        $pages = 5;
+        $clickPage = 0;
+        $stories = success($start, $pages, 'all');
+        $item = count($stories);
+        $page = ceil($item/5);
+        if (isset($_GET['page'])){
+            $clickPage = $_GET['page'];
+            $start = ($clickPage-1)*$pages;
+        }
+        $stories = success($start, $pages, 'spe');
     @endphp
 
     <div class="project_summary bg-dark-cu content-100 success">
+        @include('frontend.pages.component.themeChanger')
         <div class="row content-80 border-bottom-">
             <div class="col-md-8 successes">
                 @foreach($stories as $stories_)
-                    @if($stories_->status==1)
+                    @if($stories_->status===1)
                         <img src="{{asset('storage/'.$stories_->image)}}" alt="">
                         <div class="info-field">
                             @php
@@ -44,25 +55,7 @@
                 @include('frontend.pages.component.latestPost')
             </div>
         </div>
-        <nav aria-label="Page navigation example ">
-            <ul class="pagination pagination-lg ">
-                <li class="page-item bg-dark--">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        @include('frontend.pages.component.pagination')
     </div>
 
 

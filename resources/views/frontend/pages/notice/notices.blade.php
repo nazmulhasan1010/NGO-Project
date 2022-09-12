@@ -4,6 +4,7 @@
     @include('layouts.partials.frontend.pageTitle')
     <!-- event & notice -->
     <div class="project_summary bg-white-cu content-100">
+        @include('frontend.pages.component.themeChanger')
         <div class="row content-80 event-notices event-show border-bottom-">
             @php
                 $notice = getNotices('all');

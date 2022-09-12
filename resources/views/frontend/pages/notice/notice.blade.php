@@ -3,7 +3,8 @@
 @section('content')
     @include('layouts.partials.frontend.pageTitle')
     <div class="project_summary bg-white-cu content-100">
-        <div class="row content-80 event-notices event-show border-bottom- border-top-_">
+        @include('frontend.pages.component.themeChanger')
+        <div class="row content-80 event-notices event-show border-bottom-">
 
             @if($notice)
                 <div class="col-md-12 sub-container event-notice ">
@@ -40,14 +41,16 @@
 
                             @else
                                 <a href="{{asset('storage/notice/'.$notices->attachment)}}">
-                                <img src="{{asset('storage/notice/'.$notices->attachment)}}" alt="notice" width="100%"></a>
+                                    <img src="{{asset('storage/notice/'.$notices->attachment)}}" alt="notice"
+                                         width="100%">
+                                </a>
 
                             @endif
-{{--                            <a href="{{asset('storage/notice/'.$notices->attachment)}}" class="p-4">--}}
-{{--                                <button type="button" class="more-button ">--}}
-{{--                                    Download--}}
-{{--                                </button>--}}
-{{--                            </a>--}}
+                            <a href="{{url('download/'.$notices->attachment)}}" class="p-4">
+                                <button type="button" class="more-button ">
+                                    Download
+                                </button>
+                            </a>
                         @endif
                     @endforeach
                 </div>

@@ -25,7 +25,7 @@
                 <a href="{{url('entrepreneurs')}}">
                     <p>entrepreneurs</p>
                 </a>
-                <a href="{{url('success')}}">
+                <a href="{{url('stories')}}">
                     <p>success stories</p>
                 </a>
                 <a href="#">
@@ -47,7 +47,7 @@
             </div>
             <div class="footer-content">
                 <h4>others</h4>
-                <a href="#">
+                <a href="{{url('faq')}}">
                     <p>Contact Us</p>
                 </a>
                 <a href="#">

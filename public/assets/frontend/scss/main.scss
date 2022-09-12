@@ -38,10 +38,56 @@ p {
     .border-bottom- {
         border-bottom: 2px solid $textColor-50;
         margin-bottom: 20px;
+    }
 
-        .border-top-_ {
-            border-top: 2px solid $textColor-50;
-            margin-bottom: 20px;
+    .border-top- {
+        border-top: 2px solid $textColor-50;
+        margin-bottom: 20px;
+    }
+}
+
+.bg-white-cu.border-bottom- {
+    border-bottom: 2px solid $textColor-50;
+    margin-bottom: 20px;
+}
+
+.bg-white-cu.border-top- {
+    border-top: 2px solid $textColor-50;
+    padding: 200px;
+}
+
+
+.bg-white-cu.success,
+.bg-white-cu .success {
+    .successes {
+        .latest-post-links {
+            .lp-links {
+                p {
+                    color: $textColor-50;
+                }
+            }
+
+            &:hover {
+                .lp-links {
+                    h2 {
+                        color: $bgSecondary2;
+                    }
+                }
+            }
+
+            .lp-links {
+                .date {
+                    span {
+                        &:nth-child(2) {
+                            color: $textColor-70;
+                        }
+                    }
+                }
+
+                h2 {
+                    color: $textColor;
+                }
+            }
         }
     }
 }
@@ -117,10 +163,61 @@ p {
         margin-bottom: 20px;
     }
 
-    .border-top-_ {
-        border-top: 2px solid $textColor-50;
+    .border-top- {
+        border-top: 2px solid $bgWhite-50;
         margin-bottom: 20px;
     }
+
+    .event-show {
+        .event-notice {
+            .notice-show,
+            .notice {
+                .notices {
+                    p {
+                        color: $bgWhite-50;
+                    }
+
+                    h3 {
+                        color: $bgWhite-70;
+                    }
+                }
+            }
+
+            .event {
+                box-shadow: 8px 8px 15px $bgWhite-20;
+
+                .events {
+
+                    h4 {
+                        color: $bgWhite;
+                    }
+
+                    .event-date-place {
+
+                        span {
+                            color: $bgWhite-70;
+                        }
+                    }
+
+                    p {
+                        color: $bgWhite-50;
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+.bg-dark-cu.border-bottom- {
+    border-bottom: 2px solid $bgWhite-50;
+    margin-bottom: 20px;
+}
+
+.bg-dark-cu.border-top- {
+    border-top: 2px solid $bgWhite-50;
+    margin-bottom: 20px;
 }
 
 .more-button {
@@ -175,6 +272,14 @@ a {
             @include poppins(400);
             color: $textColor-50;
         }
+
+        .date {
+            span {
+                &:nth-child(2) {
+                    color: $textColor-50;
+                }
+            }
+        }
     }
 }
 
@@ -197,6 +302,19 @@ a {
             font-size: 1.2rem;
             @include poppins(400);
             color: $bgWhite-50;
+        }
+    }
+
+    .theme {
+        .theme-changer {
+
+            input {
+                color: $bgWhite-50;
+            }
+
+            label {
+                color: $bgWhite-50;
+            }
         }
     }
 }
@@ -607,6 +725,7 @@ a {
             @include poppins(300);
             font-size: 1.5rem;
             margin: 20px 0;
+            padding-right: 10px;
             color: $bgWhite-30;
         }
     }
@@ -721,11 +840,22 @@ a {
         }
 
         .notice-show {
-             margin: 5px 0;
+            margin: 5px 0;
             width: 100%;
-             &:hover {
-                 background-color: $bgWhite;
-             }
+
+            &:hover {
+                background-color: transparent;
+            }
+
+            .notices {
+                p {
+                    font-size: 1.7rem;
+                }
+
+                .date {
+                    width: 120px;
+                }
+            }
         }
     }
 }
@@ -733,7 +863,6 @@ a {
 .event-show {
     .event-notice {
         .event {
-            //box-shadow: 4px 10px 20px $blue-gray;
             box-shadow: 8px 8px 15px $blue-gray-50;
             border-radius: 4px;
 
@@ -1295,6 +1424,7 @@ a {
                 p {
                     color: $bgWhite-50;
                     font-size: 1.3rem;
+                    @include montserrat(600);
                 }
             }
 
@@ -1332,5 +1462,26 @@ a {
             background-color: $bgWhite-50;
         }
 
+    }
+}
+
+//theme changer --------------------------
+.theme {
+    .theme-changer {
+        @include disFlex;
+        justify-content: flex-end;
+
+        input {
+            color: $textColor-50;
+            margin: 0 10px;
+            height: 20px;
+            width: 20px;
+        }
+
+        label {
+            color: $textColor-50;
+            font-size: 1.5rem;
+            @include montserrat(600);
+        }
     }
 }

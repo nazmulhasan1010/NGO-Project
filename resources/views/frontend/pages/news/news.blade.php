@@ -3,11 +3,21 @@
 @section('content')
     @include('layouts.partials.frontend.pageTitle')
     @php
-        $newses = getNews('all');
+        $start = 0;
+        $pages = 5;
+        $clickPage = 0;
+        $newses = getNews($start, $pages, 'all');
+        $item = count($newses);
+        $page = ceil($item/5);
+        if (isset($_GET['page'])){
+            $clickPage = $_GET['page'];
+            $start = ($clickPage-1)*$pages;
+        }
+        $newses = getNews($start, $pages, 'spe');
     @endphp
-
-    <div class="project_summary bg-white-cu content-100 success">
-        <div class="row content-80 border-bottom-">
+    <div class="project_summary bg-white-cu content-100 success ">
+        @include('frontend.pages.component.themeChanger')
+        <div class="row content-80 border-bottom- ">
             <div class="col-md-8 successes">
                 @foreach($newses as $news)
                     @if($news->status===1)
@@ -44,26 +54,8 @@
                 @include('frontend.pages.component.latestPost')
             </div>
         </div>
+        @include('frontend.pages.component.pagination')
 
-        <nav aria-label="Page navigation example ">
-            <ul class="pagination pagination-lg ">
-                <li class="page-item bg-dark--">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 
 @endsection

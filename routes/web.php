@@ -57,6 +57,7 @@ Route::get('activity/{id}', [pageController::class, 'activity']);
 Route::get('stories', [pageController::class, 'stories']);
 Route::get('story/{id}', [pageController::class, 'story']);
 Route::post('message', [clientController::class, 'message']);
+Route::get('download/{path}', [clientController::class, 'download']);
 
 
 //Backend

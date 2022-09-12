@@ -15,6 +15,7 @@ use App\Models\Event;
 use App\Models\News;
 use App\Models\Blog;
 use App\Models\Notice;
+use App\Models\Logo;
 
 if (!function_exists('getCommunication')) {
     function getCommunication(): array
@@ -76,12 +77,14 @@ if (!function_exists('getFaq')) {
 }
 
 if (!function_exists('success')) {
-    function success($id)
+    function success($start,$limit,$sta)
     {
-        if ($id === 'all') {
+        if ($sta === 'all') {
             return SuccessStories::latest()->get();
+        } elseif ($sta === 'spe') {
+            return SuccessStories::where('id', '>', $start)->take($limit)->get();
         } else {
-            return SuccessStories::where('id', '=', $id)->get();
+            return SuccessStories::where('id', '=', $start)->get();
         }
     }
 }
@@ -92,9 +95,9 @@ if (!function_exists('getLatest')) {
         $blog = Blog::latest()->take(3)->get();
         $news = News::latest()->take(3)->get();
         return [
-            'story'=>$success,
-            'blog'=>$blog,
-            'news'=>$news
+            'story' => $success,
+            'blog' => $blog,
+            'news' => $news
         ];
     }
 }
@@ -110,33 +113,44 @@ if (!function_exists('getEvents')) {
     }
 }
 if (!function_exists('getNews')) {
-    function getNews($id)
+    function getNews($start, $limit, $sta)
     {
-        if ($id === 'all') {
+        if ($sta === 'all') {
             return News::get();
+        } elseif ($sta === 'spe') {
+            return News::where('id', '>', $start)->take($limit)->get();
         } else {
-            return News::where('id', '=', $id)->get();
+            return News::where('id', '=', $start)->get();
         }
 
     }
 }
 if (!function_exists('getBlogs')) {
-    function getBlogs($id)
+    function getBlogs($start, $limit, $sta)
     {
-        if ($id === 'all') {
+        if ($sta === 'all') {
             return Blog::get();
-        } else {
-            return Blog::where('id', '=', $id)->get();
+        } elseif ($sta === 'spe') {
+            return Blog::where('id', '>', $start)->take($limit)->get();
+        }else {
+            return Blog::where('id', '=', $start)->get();
         }
 
     }
 }
-if(!function_exists('getNotices')){
-    function getNotices($id){
+if (!function_exists('getNotices')) {
+    function getNotices($id)
+    {
         if ($id === 'all') {
             return Notice::get();
         } else {
             return Notice::where('id', '=', $id)->get();
         }
+    }
+}
+if (!function_exists('getLogo')) {
+    function getLogo($type)
+    {
+        return Logo::where('logo_status', '=', $type)->latest()->get();
     }
 }
