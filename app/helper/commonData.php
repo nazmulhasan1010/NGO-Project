@@ -4,6 +4,8 @@
 use App\Models\Contacts;
 use App\Models\Links;
 use App\Models\ImageGallery;
+use App\Models\Privacy;
+use App\Models\Terms;
 use App\Models\VideoGallery;
 use App\Models\Beneficiary;
 use App\Models\About;
@@ -89,7 +91,7 @@ if (!function_exists('success')) {
     }
 }
 if (!function_exists('getLatest')) {
-    function getLatest()
+    function getLatest(): array
     {
         $success = SuccessStories::latest()->take(3)->get();
         $blog = Blog::latest()->take(3)->get();
@@ -139,12 +141,14 @@ if (!function_exists('getBlogs')) {
     }
 }
 if (!function_exists('getNotices')) {
-    function getNotices($id)
+    function getNotices($start, $limit, $sta)
     {
-        if ($id === 'all') {
+        if ($sta === 'all') {
             return Notice::get();
+        }elseif ($sta === 'spe') {
+            return Notice::where('id', '>', $start)->take($limit)->get();
         } else {
-            return Notice::where('id', '=', $id)->get();
+            return Notice::where('id', '=', $start)->get();
         }
     }
 }
@@ -152,5 +156,16 @@ if (!function_exists('getLogo')) {
     function getLogo($type)
     {
         return Logo::where('logo_status', '=', $type)->latest()->get();
+    }
+}
+
+if (!function_exists('getTerms')){
+    function getTerms(){
+        return Terms::where('status', '=', 1)->take(1)->get();
+    }
+}
+if (!function_exists('getPrivacy')) {
+    function getPrivacy()    {
+        return Privacy::where('status', '=', 1)->take(1)->get();
     }
 }

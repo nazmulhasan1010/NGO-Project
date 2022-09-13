@@ -39,6 +39,18 @@
                             <span class="nav-text">Working area</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('terms.index')}}" class="ai-icon" aria-expanded="false">
+                            <i class="fa-regular fa-note-sticky"></i>
+                            <span class="nav-text">Terms and conditions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('privacy.index')}}" class="ai-icon" aria-expanded="false">
+                            <i class="fa-solid fa-fingerprint"></i>
+                            <span class="nav-text">Privacy Policy</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -129,44 +141,6 @@
                     </li>
                 </ul>
             </li>
-            {{--            <li><a class="has-arrow ai-icon" aria-expanded="false">--}}
-            {{--                    <i class="fa-solid fa-burger"></i>--}}
-            {{--                    <span class="nav-text">About Food</span>--}}
-            {{--                </a>--}}
-            {{--                <ul aria-expanded="false">--}}
-            {{--                    <li>--}}
-            {{--                        <a href="{{route('foods.index')}}" class="ai-icon" aria-expanded="false">--}}
-            {{--                            <i class="fa-solid fa-utensils"></i>--}}
-            {{--                            <span class="nav-text">Foods Ans Recipes</span>--}}
-            {{--                        </a>--}}
-            {{--                    </li>--}}
-            {{--                    <li>--}}
-            {{--                        <a href="{{route('foodValue.index')}}" class="ai-icon" aria-expanded="false">--}}
-            {{--                            <i class="fa-solid fa-bowl-food"></i>--}}
-            {{--                            <span class="nav-text">Food Value</span>--}}
-            {{--                        </a>--}}
-            {{--                    </li>--}}
-            {{--                    <li>--}}
-            {{--                        <a href="{{route('foodDemand.index')}}" class="ai-icon" aria-expanded="false">--}}
-            {{--                            <i class="fa-solid fa-hand-holding-dollar"></i>--}}
-            {{--                            <span class="nav-text">Demand</span>--}}
-            {{--                        </a>--}}
-            {{--                    </li>--}}
-            {{--                    <li>--}}
-            {{--                        <a href="{{route('product.index')}}" class="ai-icon" aria-expanded="false">--}}
-            {{--                            <i class="fa-brands fa-product-hunt"></i>--}}
-            {{--                            <span class="nav-text">Products</span>--}}
-            {{--                        </a>--}}
-            {{--                    </li>--}}
-            {{--                    <li>--}}
-            {{--                        <a href="{{route('recipe.index')}}" class="ai-icon" aria-expanded="false">--}}
-            {{--                            <i class="fa-solid fa-plate-wheat"></i>--}}
-            {{--                            <span class="nav-text">Recipe</span>--}}
-            {{--                        </a>--}}
-            {{--                    </li>--}}
-            {{--                </ul>--}}
-            {{--            </li>--}}
-
             <li><a class="has-arrow ai-icon" aria-expanded="false">
                     <i class="fa-solid fa-tower-cell"></i>
                     <span class="nav-text">Communication</span>

@@ -22,8 +22,20 @@
 <!-- header  -->
 <header class="header d-flex justify-content-between " id="header">
     <div class="header_content left">
-        <a href="{{url('/')}}"><img src="{{asset('assets/frontend/img-icon/pksf.jpeg')}}" alt="" class="logo"></a>
-        <a href="#"><img src="{{asset('assets/frontend/img-icon/ngf_logo.jpg')}}" alt="" class="logo logo-2"></a>
+        @php
+            $logo = getLogo('primary');
+            $logoImg ='assets/frontend/img-icon/pksf.jpeg';
+            if (count($logo)>0){
+                $logoImg = 'storage/'. $logo[0]->image;
+            }
+            $logo_2 = getLogo('secondary');
+            $logoImg_2 ='assets/frontend/img-icon/ngf_logo.jpg';
+            if (count($logo_2)>0){
+                $logoImg_2 = 'storage/'. $logo_2[0]->image;
+            }
+        @endphp
+        <a href="{{url('/')}}"><img src="{{asset($logoImg)}}" alt="" class="logo"></a>
+        <a href="#"><img src="{{asset($logoImg_2)}}" alt="" class="logo logo-2"></a>
     </div>
     <div class="header_content menu_bar" id="menuBar">
         <i class="fa-solid fa-bars menu-ico-more" id="menuShow"></i>
@@ -77,11 +89,6 @@
                         <div class="option-head">FAQ</div>
                     </li>
                 </a>
-{{--                <a href="{{url('calender')}}">--}}
-{{--                    <li>--}}
-{{--                        <div class="option-head">Calender</div>--}}
-{{--                    </li>--}}
-{{--                </a>--}}
                 <a href="{{url('events')}}">
                     <li>
                         <div class="option-head">Events</div>

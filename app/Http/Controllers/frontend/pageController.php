@@ -77,7 +77,7 @@ class pageController extends Controller
 
     public function newsMore($id)
     {
-        $news = getNews($id,'','one');
+        $news = getNews($id, '', 'one');
         return view('frontend.pages.news.newsMore', ['news' => $news]);
     }
 
@@ -104,7 +104,7 @@ class pageController extends Controller
 
     public function story($id)
     {
-        $story = success($id,'','one');
+        $story = success($id, '', 'one');
         return view('frontend.pages.success.story', ['story' => $story]);
     }
 
@@ -115,7 +115,7 @@ class pageController extends Controller
 
     public function blog($id)
     {
-        $blog = getBlogs($id,'','one');
+        $blog = getBlogs($id, '', 'one');
         return view('frontend.pages.blogs.blog', ['blog' => $blog]);
     }
 
@@ -126,8 +126,18 @@ class pageController extends Controller
 
     public function notice($id)
     {
-        $notice = getNotices($id);
-        return view('frontend.pages.notice.notice',['notice'=>$notice]);
+        $notice = getNotices($id, '', 'one');
+        return view('frontend.pages.notice.notice', ['notice' => $notice]);
+    }
+
+    public function privacy()
+    {
+        return view('frontend.pages.privacyPolicy');
+    }
+
+    public function terms()
+    {
+        return view('frontend.pages.termsConditions');
     }
 
 

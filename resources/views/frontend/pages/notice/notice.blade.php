@@ -58,30 +58,4 @@
         </div>
 
 @endsection
-{{--        @php--}}
-{{--            $file_type = \Str::lower(pathinfo($item, PATHINFO_EXTENSION));--}}
-{{--        @endphp--}}
-{{--        @if ($file_type == "pdf")--}}
-{{--            <object data="{{ asset('workshop-files/'.$item)}}" type="application/pdf" internalinstanceid="9" title=""--}}
-{{--                    style="--}}
-{{--                                            width: 100%;--}}
-{{--                                            height: 100vh;--}}
-{{--                                            "--}}
-{{--            >--}}
-{{--                <p>--}}
-{{--                    Your browser isn't supporting embedded pdf files.--}}
-{{--                    You can download the file--}}
-{{--                    <a href="{{ asset('workshop-files/'.$item)}}">here</a>.--}}
-{{--                </p>--}}
-{{--            </object>--}}
-{{--        @elseif ($file_type == "jpg" || $file_type == "png" || $file_type == "jpeg" || $file_type == "gif")--}}
-{{--            <img src="{{ asset('workshop-files/'.$item)}}" alt="" srcset="" width="100%">--}}
-{{--        @else--}}
-{{--            <p>--}}
-{{--                Your browser isn't supporting embedded this files.--}}
-{{--                You can download the file--}}
-{{--                <a href="{{ asset('workshop-files/'.$item)}}">here</a>.--}}
-{{--            </p>--}}
-{{--        @endif--}}
 
-{{--        <hr>--}}

@@ -81,7 +81,6 @@ class aboutController extends Controller
                 }
             }
         }
-//        return $sta;
         if ($sta === 'exist') {
             Toastr::warning($instructions[1] . ' ' . 'Already exists so please delete the older' . ' ' . $instructions[1] . ' ' . 'And try again');
             return redirect()->back();

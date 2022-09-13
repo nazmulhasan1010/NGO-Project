@@ -170,6 +170,7 @@ p {
 
     .event-show {
         .event-notice {
+
             .notice-show,
             .notice {
                 .notices {
@@ -424,11 +425,14 @@ a {
 
         a {
             .logo {
-                height: 60px;
+                height: 55px;
+                width: 200px;
             }
 
             .logo-2 {
                 margin-left: 20px;
+                height: 55px;
+                width: auto;
             }
         }
     }
@@ -1455,11 +1459,22 @@ a {
 }
 
 //success stories end --------------------------
+
+// active pagination ----------------------------------
 .content-100 {
     .page-item {
         .page-link {
             color: $blue-gray;
             background-color: $bgWhite-50;
+        }
+
+    }
+
+    .page-item.active-pagi {
+        .page-link {
+            color: $bgWhite-70;
+            font-weight: bold;
+            background-color: $blue-gray;
         }
 
     }
@@ -1483,5 +1498,26 @@ a {
             font-size: 1.5rem;
             @include montserrat(600);
         }
+    }
+}
+
+// terms and policy -----------------------
+.terms-policy {
+    font-size: 1.6rem;
+    @include montserrat(600);
+
+    ul {
+        list-style: decimal;
+
+        li {
+            margin-bottom: 10px;
+        }
+    }
+
+    strong {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 50px;
+        text-decoration: underline;
     }
 }

@@ -3,7 +3,14 @@
         ***********************************-->
 <div class="nav-header">
     <a href="{{ route('dashboard')}}" class="brand-logo">
-        <img src="{{asset('storage/'.getLogo('primary')[0]->image)}}" alt="logo" style="width:70%; height: 55px">
+        @php
+            $logo = getLogo('primary');
+            $logoImg ='assets/frontend/img-icon/pksf.jpeg';
+            if (count($logo)>0){
+                $logoImg = 'storage/'. $logo[0]->image;
+            }
+        @endphp
+        <img src="{{asset($logoImg)}}" alt="logo" style="width:200px; height: 55px">
     </a>
 
     <div class="nav-control">

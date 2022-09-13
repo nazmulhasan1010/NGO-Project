@@ -7,7 +7,17 @@
         @include('frontend.pages.component.themeChanger')
         <div class="row content-80 event-notices event-show border-bottom-">
             @php
-                $notice = getNotices('all');
+                $start = 0;
+                $pages = 5;
+                $clickPage = 0;
+                $notice = getNotices($start, $pages, 'all');
+                $item = count($notice);
+                $page = ceil($item/5);
+                if (isset($_GET['page'])){
+                    $clickPage = $_GET['page'];
+                    $start = ($clickPage-1)*$pages;
+                }
+                $notice = getNotices($start, $pages, 'spe');
             @endphp
             @if($notice)
                 <div class="col-md-6 sub-container event-notice ">
@@ -46,25 +56,7 @@
                 </div>
             @endif
         </div>
-        <nav aria-label="Page navigation example ">
-            <ul class="pagination pagination-lg ">
-                <li class="page-item bg-dark--">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        @include('frontend.pages.component.pagination')
     </div>
 
 @endsection

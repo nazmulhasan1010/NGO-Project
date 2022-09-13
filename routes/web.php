@@ -18,11 +18,13 @@ use App\Http\Controllers\Backend\logoController;
 use App\Http\Controllers\Backend\newsController;
 use App\Http\Controllers\Backend\noticeController;
 use App\Http\Controllers\Backend\partnerController;
+use App\Http\Controllers\Backend\privacyController;
 use App\Http\Controllers\Backend\productController;
 use App\Http\Controllers\Backend\publicationController;
 use App\Http\Controllers\Backend\recipeController;
 use App\Http\Controllers\Backend\sliderController;
 use App\Http\Controllers\Backend\successStoriesController;
+use App\Http\Controllers\Backend\termsController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\videoGalleryController;
 use App\Http\Controllers\Backend\workingAreaController;
@@ -58,6 +60,8 @@ Route::get('stories', [pageController::class, 'stories']);
 Route::get('story/{id}', [pageController::class, 'story']);
 Route::post('message', [clientController::class, 'message']);
 Route::get('download/{path}', [clientController::class, 'download']);
+Route::get('privacy', [pageController::class, 'privacy']);
+Route::get('terms', [pageController::class, 'terms']);
 
 
 //Backend
@@ -99,6 +103,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('partner', partnerController::class);
     Route::resource('faq', faqController::class);
     Route::resource('logo', logoController::class);
+    Route::resource('terms', termsController::class);
+    Route::resource('privacy', privacyController::class);
 });
 
 

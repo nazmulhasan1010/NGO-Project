@@ -28,7 +28,7 @@
                 <a href="{{url('stories')}}">
                     <p>success stories</p>
                 </a>
-                <a href="#">
+                <a href="{{url('terms')}}">
                     <p>Terms & Condition</p>
                 </a>
 
@@ -53,7 +53,7 @@
                 <a href="#">
                     <p>Help</p>
                 </a>
-                <a href="#">
+                <a href="{{url('privacy')}}">
                     <p>Privacy Policy</p>
                 </a>
             </div>
