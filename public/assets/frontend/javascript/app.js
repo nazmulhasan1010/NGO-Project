@@ -75,7 +75,7 @@ for (var i = 0; i < galleryLength; i++) {
     $('.gallery-coll').eq(i).children('.coll-heading').children('.left').children('.counter').children('.total-photos').html(photosOnAlbum);
 }
 
-// menu bar
+// image gallery
 $('.gallery-image').click(function () {
     let imgLink = $(this).children('img').attr('src');
     let description = $(this).children('input').val();

@@ -11,8 +11,13 @@
 	<meta property="og:description" content="Laravel Project Starter" />
 	<meta property="og:image" content="" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Laravel Project Starter | @yield('title')</title>
+    <title>{{ config('app.name', 'AASCO') }} | @yield('title')</title>
     <!-- Favicon icon -->
+
+    {{--    fav icon --}}
+    <link rel="icon" href="{{ asset('assets/frontend/img-icon/pksf.png') }}">
+
+
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/backend/images/favicon.png')}}">
 	<link href="{{ asset('assets/backend/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}} " rel="stylesheet">
     <link href="{{ asset('assets/backend/css/style.css')}}" rel="stylesheet">

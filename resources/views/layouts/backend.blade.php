@@ -41,6 +41,11 @@
             color: red;
             font-weight: 700;
         }
+        @media screen and (max-width: 1025px) {
+            .nav-header .brand-logo{
+                display: none;
+            }
+        }
     </style>
     @stack('vendor-css')
     @stack('onpage-css')

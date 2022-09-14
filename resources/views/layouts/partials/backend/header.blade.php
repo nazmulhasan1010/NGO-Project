@@ -1,7 +1,11 @@
-<!--**********************************
-            Nav header start
-        ***********************************-->
+
 <div class="nav-header">
+    <div class="nav-control">
+        <div class="hamburger">
+            <span class="line"></span><span class="line"></span><span class="line"></span>
+        </div>
+    </div>
+
     <a href="{{ route('dashboard')}}" class="brand-logo">
         @php
             $logo = getLogo('primary');
@@ -10,22 +14,10 @@
                 $logoImg = 'storage/'. $logo[0]->image;
             }
         @endphp
-        <img src="{{asset($logoImg)}}" alt="logo" style="width:200px; height: 55px">
+        <img src="{{asset($logoImg)}}" alt="logo" style="max-height: 55px;">
     </a>
-
-    <div class="nav-control">
-        <div class="hamburger">
-            <span class="line"></span><span class="line"></span><span class="line"></span>
-        </div>
-    </div>
 </div>
-<!--**********************************
-    Nav header end
-***********************************-->
 
-<!--**********************************
-    Header start
-***********************************-->
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -70,6 +62,4 @@
 
     </div>
 </div>
-<!--**********************************
-    Header end ti-comment-alt
-***********************************-->
+
