@@ -104,12 +104,14 @@ if (!function_exists('getLatest')) {
     }
 }
 if (!function_exists('getEvents')) {
-    function getEvents($id)
+    function getEvents($start, $limit, $sta)
     {
-        if ($id === 'all') {
+        if ($sta === 'all') {
             return Event::get();
-        } else {
-            return Event::where('id', '=', $id)->get();
+        }elseif ($sta === 'spe') {
+            return Event::where('id', '>', $start)->take($limit)->get();
+        }else {
+            return Event::where('id', '=', $start)->get();
         }
 
     }
