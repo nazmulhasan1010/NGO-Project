@@ -10,7 +10,7 @@
             @for($i= 1; $i <= $page; $i++)
                 <li class="page-item {{$clickPage == $i?'active-pagi':''}}"><a class="page-link" href="?page={{$i}}">{{$i}}</a></li>
             @endfor
-            <li class="page-item {{$start>$item-5?'disabled':''}}">
+            <li class="page-item {{$start>$item-6?'disabled':''}}">
                 <a class="page-link" href="?page={{$clickPage+1}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only"></span>

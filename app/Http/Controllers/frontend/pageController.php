@@ -66,7 +66,7 @@ class pageController extends Controller
 
     public function event($id)
     {
-        $event = getEvents($id);
+        $event = getEvents($id, '', 'one');
         return view('frontend.pages.events.event', ['event' => $event]);
     }
 
