@@ -10,13 +10,14 @@
             <p><i class="fa-solid fa-phone"></i> {{$contacts->contactNumber}}</p>
         @endforeach
     </div>
-    <div class="right d-flex justify-content-end">
-        <div class="lan_cng_btn" id="lanBtn">
-            <label class="lanEnOn on">EN</label>
-            <label class="lanBnOn off">BN</label>
-        </div>
-        <input type="radio" name="on" id="lanStatus" value="0" hidden>
-    </div>
+    <form action="" class="right d-flex justify-content-end" method="post" role="form">
+        @csrf
+        <input type="hidden" name="lanStatus" id="lanStatus" value="0" hidden>
+        <button type="button" class="lan_cng_btn" id="lanBtn">
+            <label class="lanEnOn {{session()->get('language')=='en'?'on':'off'}}">EN</label>
+            <label class="lanBnOn {{session()->get('language')=='bn'?'on':'off'}}">BN</label>
+        </button>
+    </form>
 </div><!-- contact modal end -->
 
 <!-- header  -->
@@ -48,39 +49,36 @@
 
             <ul>
                 <li class="active">
-                    <div class="option-head">About<i class="fa-solid fa-caret-right"></i></div>
+                    <div class="option-head">{{__('front.about')}}<i class="fa-solid fa-caret-right"></i></div>
                     <div class="option-main">
                         <div class="menu-option">
                             <a href="{{url('overview')}}">
-                                <div class="options">Project Overview</div>
+                                <div class="options">{{__('front.overview')}}</div>
                             </a>
                             <a href="{{url('goal')}}">
-                                <div class="options">Project goal</div>
+                                <div class="options">{{__('front.goal')}}</div>
                             </a>
                             <a href="{{url('workingarea')}}">
-                                <div class="options">working area</div>
+                                <div class="options">{{__('front.area')}}</div>
                             </a>
                             <a href="{{url('mission')}}">
-                                <div class="options">mission</div>
+                                <div class="options">{{__('front.mission')}}</div>
                             </a>
                             <a href="{{url('gallery/photos')}}">
-                                <div class="options">Image gallery</div>
-                            </a>
-                            <a href="{{url('')}}">
-                                <div class="options">values</div>
+                                <div class="options">{{__('front.imgG')}}</div>
                             </a>
                         </div>
                     </div>
                 </li>
                 <a href="{{url('entrepreneurs')}}">
                     <li>
-                        <div class="option-head">Entrepreneurs</div>
+                        <div class="option-head">{{__('front.entre')}}</div>
                     </li>
                 </a>
 
                 <a href="{{url('stories')}}">
                     <li>
-                        <div class="option-head">Success Stories</div>
+                        <div class="option-head">{{__('front.stories')}} </div>
                     </li>
                 </a>
 
@@ -91,22 +89,22 @@
                 </a>
                 <a href="{{url('events')}}">
                     <li>
-                        <div class="option-head">Events</div>
+                        <div class="option-head">{{__('front.events')}}</div>
                     </li>
                 </a>
                 <a href="{{url('newses')}}">
                     <li>
-                        <div class="option-head">News</div>
+                        <div class="option-head">{{__('front.news')}}</div>
                     </li>
                 </a>
                 <a href="{{url('blogs')}}">
                     <li>
-                        <div class="option-head">Blog</div>
+                        <div class="option-head">{{__('front.blog')}}</div>
                     </li>
                 </a>
                 <a href="{{url('notices')}}">
                     <li>
-                        <div class="option-head">Notice</div>
+                        <div class="option-head">{{__('front.notice')}}</div>
                     </li>
                 </a>
             </ul>

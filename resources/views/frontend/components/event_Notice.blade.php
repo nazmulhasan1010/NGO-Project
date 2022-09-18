@@ -4,8 +4,8 @@
         @if($event)
             <div class="col-md-6 sub-container event-notice">
                 <div class="heading">
-                    <span class="heading-1">Upcoming</span>
-                    <span class="heading-2">Events</span>
+                    <span class="heading-1">{{__('front.upcoming')}}</span>
+                    <span class="heading-2">{{__('front.events')}}</span>
                 </div>
                 @foreach($event as $events)
                     @if($events->status===1)
@@ -37,7 +37,7 @@
                                 @endphp
                                 <p>{{$des}}</p>
                                 <a href="{{url('event/'.$events->id)}}">
-                                    <button type="button" class="more-button">Learn more</button>
+                                    <button type="button" class="more-button">{{__('front.lrnMore')}}</button>
                                 </a>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                     @endif
                 @endforeach
                 <a href="{{url('events')}}" class="more-link">
-                    <button type="button" class="more-button see-all">See All <i
+                    <button type="button" class="more-button see-all">{{__('front.seeAll')}}<i
                             class="fa-solid fa-angles-right"></i></button>
                 </a>
             </div>
@@ -53,7 +53,7 @@
         @if($notice)
             <div class="col-md-6 sub-container event-notice ">
                 <div class="heading">
-                    <span class="heading-1">Notice</span>
+                    <span class="heading-1">{{__('front.notice')}}</span>
                 </div>
                 @foreach($notice as $notices)
                     @if($notices->status===1)
@@ -85,7 +85,7 @@
                     @endif
                 @endforeach
                 <a href="{{url('notices')}}" class="more-link">
-                    <button type="button" class="more-button see-all">See All <i
+                    <button type="button" class="more-button see-all">{{__('front.seeAll')}}<i
                             class="fa-solid fa-angles-right"></i></button>
                 </a>
             </div>

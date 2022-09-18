@@ -3,8 +3,8 @@
 
     <div class="project_summary bg-dark-cu content-100">
         <div class="heading">
-            <span class="heading-1">Enterprise</span>
-            <span class="heading-2">Location</span>
+            <span class="heading-1">{{__('front.entres')}}</span>
+            <span class="heading-2">{{__('front.location')}}</span>
         </div>
         <div class="row content-80 enterprise">
             @foreach($enterprises as $enterprise)
@@ -25,7 +25,7 @@
                             <p class="contact-num">{{$enterprise->contact}}</p>
                             <p>{{$enterprise->address}}</p>
                             <a href="{{url('entrepreneurs')}}">
-                                <button type="button" class="more-button">View Map</button>
+                                <button type="button" class="more-button">{{__('front.viewMap')}} </button>
                             </a>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
 
         </div>
         <a href="{{url('entrepreneurs')}}">
-            <button type="button" class="more-button see-all">See All <i
+            <button type="button" class="more-button see-all">{{__('front.seeAll')}}<i
                     class="fa-solid fa-angles-right"></i></button>
         </a>
     </div> <!-- micro enterprises location end -->

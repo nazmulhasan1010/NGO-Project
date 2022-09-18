@@ -2,10 +2,10 @@
 @section('title','Register')
 
 @push('vendor-css')
-    
+
 @endpush
 @push('onpage-css')
-    
+
 @endpush
 @section('content')
 
@@ -17,10 +17,10 @@
 
 @endsection
 @push('vendor-js')
-    
+
 @endpush
 @push('onpage-js')
-    
+
 @endpush
 <div class="authincation h-100">
     <div class="container h-100">
@@ -65,12 +65,12 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                       
+
                                     </div>
                                     <div class="form-group">
                                         <label for="password-confirm" class="mb-1">{{ __('Confirm Password') }}</label>
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                       
+
                                     </div>
                                     <div class="text-center mt-4">
                                         <button type="submit" class="btn btn-primary btn-block">  {{ __('Register') }}</button>

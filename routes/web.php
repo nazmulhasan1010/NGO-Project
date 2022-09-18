@@ -31,8 +31,11 @@ use App\Http\Controllers\Backend\workingAreaController;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\frontend\frontHomeController;
 use App\Http\Controllers\frontend\pageController;
+use App\Http\Controllers\lanController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 //frontend
 Route::get('/', [frontHomeController::class, 'index']);
@@ -62,6 +65,8 @@ Route::post('message', [clientController::class, 'message']);
 Route::get('download/{path}', [clientController::class, 'download']);
 Route::get('privacy', [pageController::class, 'privacy']);
 Route::get('terms', [pageController::class, 'terms']);
+Route::post('language', [lanController::class,'language']);
+
 
 
 //Backend
@@ -107,4 +112,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('privacy', privacyController::class);
 });
 
+//test
 

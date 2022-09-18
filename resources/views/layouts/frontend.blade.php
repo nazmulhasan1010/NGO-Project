@@ -28,6 +28,12 @@
     @stack('onPage-css')
 </head>
 <body>
+@php
+    if (session()->has('language')) {
+        $lanCode = session()->get('language');
+        App::setLocale($lanCode);
+    }
+@endphp
 @include('layouts.partials.frontend.header')
 @yield('content')
 @include('layouts.partials.frontend.footer')
@@ -39,7 +45,10 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
 
 </script>
+{{--<script src="{{asset('assets/frontend/javascript/axios.min.js')}}"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{asset('assets/frontend/javascript/app.js')}}"></script>
+
 @stack('onPage-js')
 </body>
 </html>

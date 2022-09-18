@@ -15,11 +15,22 @@ use App\Models\Partner;
 use App\Models\Slider;
 use App\Models\VideoGallery;
 use App\Models\Workingarea;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class frontHomeController extends Controller
 {
-    function index()
+//    public function __construct()
+//    {
+//        if (session()->has('language')) {
+//            $lanCode = session()->get('language');
+//            App::setLocale($lanCode);
+//        }
+//    }
+
+    public function index()
     {
+
         $slider = Slider::orderBy('id', 'desc')->get();
         $area = Workingarea::latest()->first();
         $activities = Activity::latest()->take(3)->get();
@@ -42,5 +53,11 @@ class frontHomeController extends Controller
             'partners' => $partners,
             'abouts' => $abouts,
         ]);
+    }
+    public function language($lan): void
+    {
+        if ($lan){
+            App::setLocale($lan);
+        }
     }
 }

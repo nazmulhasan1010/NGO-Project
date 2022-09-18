@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use App\Models\Links;
+use Illuminate\Support\Facades\App;
 
 class pageController extends Controller
 {
@@ -26,11 +27,13 @@ class pageController extends Controller
 
     public function overview()
     {
+
         return view('frontend.pages.projectOverview');
     }
 
     public function goal()
     {
+
         return view('frontend.pages.projectGoal');
     }
 
@@ -49,15 +52,6 @@ class pageController extends Controller
         return view('frontend.pages.entrepreneurs');
     }
 
-    public function success()
-    {
-        return view('frontend.pages.successStories');
-    }
-
-//    public function calender()
-//    {
-//        return view('frontend.pages.calender');
-//    }
 
     public function events()
     {
@@ -81,10 +75,6 @@ class pageController extends Controller
         return view('frontend.pages.news.newsMore', ['news' => $news]);
     }
 
-//    public function topics()
-//    {
-//        return view('frontend.pages.blog');
-//    }
 
     public function activities()
     {
@@ -139,6 +129,11 @@ class pageController extends Controller
     {
         return view('frontend.pages.termsConditions');
     }
-
+    public function language($lan): void
+    {
+        if ($lan){
+            App::setLocale($lan);
+        }
+    }
 
 }

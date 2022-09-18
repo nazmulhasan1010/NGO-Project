@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,300;0,500;0,600;0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,500;0,600;0,700;1,300&display=swap');
 
+@import url('https://cdn.rawgit.com/sh4hids/bangla-web-fonts/solaimanlipi/stylesheet.css');
+
+
+
 @import 'color';
 @import 'mixin';
 
@@ -15,6 +19,10 @@
 html {
     font-size: 62.5%;
     overflow-x: hidden;
+}
+
+body {
+    font-family: 'SolaimanLipi';
 }
 
 p {
@@ -425,7 +433,7 @@ a {
 
         a {
             .logo {
-               max-height: 55px;               
+                max-height: 55px;
             }
 
             .logo-2 {
@@ -507,7 +515,7 @@ a {
                     .option-main {
                         display: none;
                         position: absolute;
-                        bottom: -212px;
+                        bottom: -150px;
                         left: -20px;
                         z-index: 9999;
                         @include disFlex;

@@ -1,17 +1,27 @@
 let clicks = 0;
 $('#lanBtn').click(function () {
     clicks++;
-    const result = (clicks % 2 == 0) ? "even" : "odd";
-    if (result == 'odd') {
-        $('.lanEnOn').addClass('off').removeClass('0n');
-        $('.lanBnOn').addClass('on').removeClass('off');
-        $('#lanStatus').val(1);
-    } else {
+    const result = (clicks % 2 === 0) ? "even" : "odd";
+    if (result === 'even') {
         $('.lanBnOn').addClass('off').removeClass('on');
         $('.lanEnOn').addClass('on').removeClass('off');
         $('#lanStatus').val(0);
+    } else if(result === 'odd') {
+        $('.lanEnOn').addClass('off').removeClass('0n');
+        $('.lanBnOn').addClass('on').removeClass('off');
+        $('#lanStatus').val(1);
     }
-    console.log($('#lanStatus').val());
+    let lanStatus = $('#lanStatus').val();
+
+    axios.post('language', {
+        'lanStatus': lanStatus,
+    }).then(function (response) {
+        if (response.status === 200 && response.data === 'ok') {
+            window.location.reload();
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 });
 
 
@@ -58,9 +68,9 @@ $('.faq-qna').click(function () {
 
 $('.gallery-coll').click(function () {
     if ($(this).hasClass('active-gallery')) {
-        if ($('#photoShow').hasClass('show')){
-           return;
-        }else{
+        if ($('#photoShow').hasClass('show')) {
+            return;
+        } else {
             $(this).removeClass('active-gallery');
         }
 
@@ -100,7 +110,8 @@ menus.forEach(button => {
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(0deg)');
         } else {
             //  when menu not active
-            $(this).children('.option-main').css('display', 'block').$(this).children('.option-main').children('.menu-option').css('display', 'block');
+            $(this).children('.option-main').css('display', 'block');
+            $(this).children('.option-main').children('.menu-option').css('display', 'block');
             $(this).children('.option-head').children('.fa-caret-right').css('transform', 'rotate(90deg)')
             $('.menus ul li').not(this).children('.option-main').children('.menu-option').css('display', 'none');
             $('.menus ul li').not(this).children('.option-main').css('display', 'none');
